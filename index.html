@@ -8,17 +8,16 @@
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
     />
   </head>
+
   <body>
     <nav
-      class="navbar navbar-expand-lg navbar-light bg-white position-fixed shadow-sm py-3"
+      class="navbar navbar-expand-lg navbar-light bg-white position-fixed shadow-sm py-3 w-100"
     >
       <div class="container">
         <a class="navbar-brand d-flex align-items-center fw-bold" href="#">
-          <img src="image/logo.png" ="logo" width="40" class="" />
+          <img src="image/logo.png" alt="logo" width="40" />
         </a>
 
         <button
@@ -42,13 +41,23 @@
             <li class="nav-item">
               <a class="nav-link" href="#contact">Contact Us</a>
             </li>
+
+            <li class="nav-item">
+              <a class="nav-link position-relative" href="cart.html">
+                🛒 Keranjang
+                <span
+                  id="cart-count"
+                  class="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-pill"
+                >
+                  0
+                </span>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <!-- Home Section -->
     <section
       id="home"
       class="py-5"
@@ -57,18 +66,21 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-6">
-            <span class="badge bg-warning text-dark mb-3">
-              ⭐ 50% OFF Summer Super Sale
-            </span>
+            <span class="badge bg-warning text-dark mb-3"
+              >⭐ 50% OFF Summer Super Sale</span
+            >
+
             <h1 class="fw-bold mb-3">
               Step into Style:<br />
               Your Ultimate Fashion Destination
             </h1>
+
             <p class="text-muted mb-4">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              eiusmod tempor incididunt.
             </p>
-            <a href="#products" class="btn btn-dark px-4 py-2"> Shop Now → </a>
+
+            <a href="#products" class="btn btn-dark px-4 py-2">Shop Now →</a>
           </div>
 
           <div class="col-md-6 text-center">
@@ -83,72 +95,57 @@
       </div>
     </section>
 
-    <!-- Products Section -->
-    <section id="products" class="products">
-      <h2>Koleksi Baju</h2>
-      <div class="product-grid">
-        <div id="produk-list" class="row g-4"></div>
-      </div>
+    <section id="products" class="p-5">
+      <h2 class="fw-bold">Koleksi Baju</h2>
+      <div class="row g-4" id="produk-list"></div>
     </section>
 
-    <!-- History Section -->
     <section class="history" id="history">
-      <h2>Riwayat Pembelian</h2>
+      <h2 class="fw-bold">Riwayat Pembelian</h2>
       <ul id="historyList"></ul>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="py-5">
       <div class="container ps-4">
-        <!-- TAMBAHAN ps-4 untuk jarak kiri -->
         <h2 class="mb-4 fw-bold">Tentang Kami</h2>
-
         <div class="row align-items-start">
-          <!-- Gambar kiri -->
           <div class="col-md-4 mb-3">
             <img
               src="image/download (6).jpeg"
               alt="About Us"
               class="img-fluid rounded shadow"
-              style="max-width: 300px; width: 100%"
+              style="max-width: 300px"
             />
           </div>
 
-          <!-- Teks kanan -->
           <div class="col-md-8">
             <p>
               <strong>Cara Merawat Baju:</strong> Cuci dengan air dingin, jangan
-              gunakan pemutih, dan keringkan di tempat teduh.
+              gunakan pemutih.
             </p>
-
             <p>
               <strong>Visi Kami:</strong> Menyediakan pakaian berkualitas dengan
-              desain minimalis yang tahan lama dan ramah lingkungan.
+              desain minimalis.
             </p>
-
             <p>
               <strong>Tentang Penjual:</strong> Kami adalah tim desainer fashion
-              yang berfokus pada kesederhanaan dan kenyamanan. Didirikan pada
-              2020, kami berkomitmen untuk memberikan pengalaman berbelanja
-              terbaik.
+              sejak 2020.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <div id="contact" class="ps-4">
+    <section id="contact" class="ps-4 pb-5">
       <h3>Kontak Kami</h3>
       <p>Email: info@tokobaju.com</p>
       <p>Telepon: +62 123 456 789</p>
       <p>Alamat: Jl. Fashion No. 123, Jakarta</p>
-    </div>
+    </section>
 
-    <!-- Footer -->
-    <footer>
+    <footer class="text-center py-3 bg-light">
       <p>&copy; 2023 Toko Baju Minimalis. Semua hak dilindungi.</p>
     </footer>
-
     <script>
       fetch("produk.json")
         .then((res) => res.json())
@@ -158,66 +155,114 @@
           const container = document.getElementById("produk-list");
 
           container.innerHTML = data
+            .slice(0, 8)
             .map(
               (item) => `
-      <div class="col-md-4 col-sm-6">
-        <div class="card h-100 shadow-sm">
-          <img src="${item.gambar}" class="card-img-top" alt="${
-                item.nama
-              }" style="height: 220px; object-fit: cover;">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title fw-bold">${item.nama}</h5>
-            <p class="card-text text-muted">${item.deskripsi}</p>
-            <p class="fw-semibold mb-3">Rp ${item.harga.toLocaleString()}</p>
-            <button class="btn btn-dark mt-auto" onclick="showDetail('${
-              item.id
-            }')">
-              Detail
-            </button>
+          <div class="col-md-3 col-sm-6">
+            <div class="card h-100 shadow-sm">
+              <img src="${
+                item.gambar
+              }" class="card-img-top" style="height:220px; object-fit:cover;">
+              <div class="card-body d-flex flex-column">
+                <h5 class="fw-bold">${item.nama}</h5>
+                <p class="text-muted">${item.deskripsi}</p>
+                <p class="fw-semibold mb-2">Rp ${item.harga.toLocaleString()}</p>
+
+                <p class="text-success fw-bold">
+                  Stok: <span id="stock-${item.id}">${item.stok || 10}</span>
+                </p>
+
+                <!-- TOMBOL + - -->
+                <div class="d-flex align-items-center gap-2 mb-3">
+                  <button class="btn btn-outline-dark btn-sm" onclick="minusQty('${
+                    item.id
+                  }')">−</button>
+                  <span id="qty-${item.id}" class="fw-bold">1</span>
+                  <button class="btn btn-outline-dark btn-sm" onclick="plusQty('${
+                    item.id
+                  }')">+</button>
+                </div>
+
+                <button class="btn btn-dark mt-auto mb-2" onclick="showDetail('${
+                  item.id
+                }')">
+                  Detail
+                </button>
+
+                <button class="btn btn-warning" onclick="addToCart('${
+                  item.id
+                }')">
+                  Tambah ke Keranjang
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    `
+        `
             )
             .join("");
         });
 
-      // Animasi Hero Section muncul setelah 3 detik
-      window.addEventListener("load", function () {
-        setTimeout(function () {
-          document.querySelector(".hero").classList.add("show");
-        }, 3000);
-      });
+      // KERANJANG
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-      // Fungsi Beli Item
-      function buyItem(itemId) {
-        // Kurangi stok
-        const stockElement = document.getElementById("stock" + itemId);
-        let stock = parseInt(stockElement.textContent);
-        if (stock > 0) {
-          stock--;
-          stockElement.textContent = stock;
+      function updateCartCount() {
+        document.getElementById("cart-count").textContent = cart.length;
+      }
+      updateCartCount();
 
-          // Tambahkan ke history
-          const historyList = document.getElementById("historyList");
-          const newItem = document.createElement("li");
-          newItem.textContent = `Baju ${itemId} dibeli pada ${new Date().toLocaleString()}`;
-          historyList.appendChild(newItem);
+      // TOMBOL + QTY
+      function plusQty(id) {
+        const qtyEl = document.getElementById("qty-" + id);
+        const stockEl = document.getElementById("stock-" + id);
 
-          // Tampilkan history
-          document.getElementById("history").classList.add("show");
+        let qty = parseInt(qtyEl.textContent);
+        let stock = parseInt(stockEl.textContent);
 
-          // Redirect ke halaman profil (simulasi)
-          alert("Pembelian berhasil! Anda akan diarahkan ke halaman profil.");
-          // window.location.href = 'profil.html'; // Uncomment jika ada halaman profil
-        } else {
-          alert("Stok habis!");
+        if (qty < stock) {
+          qty++;
+          qtyEl.textContent = qty;
         }
       }
+
+      // TOMBOL - QTY
+      function minusQty(id) {
+        const qtyEl = document.getElementById("qty-" + id);
+        let qty = parseInt(qtyEl.textContent);
+
+        if (qty > 1) {
+          qty--;
+          qtyEl.textContent = qty;
+        }
+      }
+
+      function addToCart(id) {
+        const qty = parseInt(document.getElementById("qty-" + id).textContent);
+        const stockEl = document.getElementById("stock-" + id);
+        let stock = parseInt(stockEl.textContent);
+
+        if (qty > stock) {
+          alert("Stok tidak mencukupi!");
+          return;
+        }
+
+        stock -= qty;
+        stockEl.textContent = stock;
+
+        for (let i = 0; i < qty; i++) {
+          cart.push({ id: id });
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartCount();
+
+        alert("Produk ditambahkan ke keranjang!");
+      }
+
       function showDetail(id) {
         window.location.href = "detail.html?id=" + id;
       }
     </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

@@ -6,7 +6,8 @@
     "deskripsi": "Kaos polos bahan katun, tersedia berbagai warna.",
     "gambar": "image/download (3).jpeg",
     "kualitas": "Bahan premium",
-    "tags": ["fashion", "baju", "style"]
+    "tags": ["fashion", "baju", "style"],
+    "stock": 20
   },
   {
     "id": "2",
@@ -15,7 +16,8 @@
     "deskripsi": "Kemeja flanel motif kotak, nyaman dipakai.",
     "gambar": "image/download (4).jpeg",
     "kualitas": "Bahan premium",
-    "tags": ["fashion", "baju", "style"]
+    "tags": ["fashion", "baju", "style"],
+    "stock": 15
   },
   {
     "id": "3",
@@ -24,6 +26,77 @@
     "deskripsi": "Jaket hoodie bahan fleece, cocok untuk cuaca dingin.",
     "gambar": "image/download (5).jpeg",
     "kualitas": "Nyaman dipakai",
-    "tags": ["fashion", "baju", "style"]
+    "tags": ["fashion", "baju", "style"],
+    "stock": 12
+  },
+  {
+    "id": "4",
+    "nama": "Celana Jeans",
+    "harga": 200000,
+    "deskripsi": "Celana jeans model slim fit, tahan lama dan stylish.",
+    "gambar": "image/download (6).jpeg",
+    "kualitas": "Tahan lama",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 10
+  },
+  {
+    "id": "5",
+    "nama": "Sepatu Sneakers",
+    "harga": 300000,
+    "deskripsi": "Sepatu sneakers nyaman untuk aktivitas sehari-hari.",
+    "gambar": "image/download (7).jpeg",
+    "kualitas": "Nyaman dipakai",
+    "tags": ["fashion", "sepatu", "style"],
+    "stock": 18
+  },
+  {
+    "id": "6",
+    "nama": "Topi Baseball",
+    "harga": 80000,
+    "deskripsi": "Topi baseball dengan desain trendy.",
+    "gambar": "image/download (8).jpeg",
+    "kualitas": "Desain trendy",
+    "tags": ["fashion", "aksesori", "style"],
+    "stock": 25
+  },
+  {
+    "id": "7",
+    "nama": "Tas Ransel",
+    "harga": 250000,
+    "deskripsi": "Tas ransel multifungsi untuk aktivitas sehari-hari.",
+    "gambar": "image/download (9).jpeg",
+    "kualitas": "Multifungsi",
+    "tags": ["fashion", "tas", "style"],
+    "stock": 14
+  },
+  {
+    "id": "8",
+    "nama": "Jam Tangan Casual",
+    "harga": 180000,
+    "deskripsi": "Jam tangan casual dengan desain modern.",
+    "gambar": "image/download (10).jpeg",
+    "kualitas": "Desain modern",
+    "tags": ["fashion", "aksesori", "style"],
+    "stock": 30
+  },
+  {
+    "id": "9",
+    "nama": "Sandal Gunung",
+    "harga": 90000,
+    "deskripsi": "Sandal gunung tahan air, cocok untuk petualangan.",
+    "gambar": "image/download (11).jpeg",
+    "kualitas": "Tahan air",
+    "tags": ["fashion", "sepatu", "style"],
+    "stock": 16
+  },
+  {
+    "id": "10",
+    "nama": "Kacamata Hitam",
+    "harga": 110000,
+    "deskripsi": "Kacamata hitam dengan perlindungan UV.",
+    "gambar": "image/download (12).jpeg",
+    "kualitas": "Perlindungan UV",
+    "tags": ["fashion", "aksesori", "style"],
+    "stock": 22
   }
 ]

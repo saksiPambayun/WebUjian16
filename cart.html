@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keranjang Belanja</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body style="background: #faf7f2" class="p-4">
+    <a onclick="history.back()" class="btn btn-outline-dark mb-3">
+      ← Kembali
+    </a>
+
+    <div class="container">
+      <h2 class="fw-bold mb-4">Keranjang Belanja</h2>
+
+      <div id="cart-items" class="mb-4"></div>
+
+      <div class="card shadow-sm p-3 mb-4">
+        <h5 class="fw-bold mb-3">Pilih Produk untuk Dibeli</h5>
+
+        <div id="checkbox-product-list"></div>
+
+        <h5 class="fw-bold mt-3">
+          Total Pembelian: Rp <span id="buy-total">0</span>
+        </h5>
+
+        <button class="btn btn-dark mt-3" id="btn-buy">Beli Sekarang</button>
+      </div>
+    </div>
+
+    <script>
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      fetch("produk.json")
+        .then((res) => res.json())
+        .then((data) => {
+          const container = document.getElementById("cart-items");
+          const checkboxList = document.getElementById("checkbox-product-list");
+
+          if (cart.length === 0) {
+            container.innerHTML =
+              "<p class='text-muted'>Keranjang masih kosong.</p>";
+            return;
+          }
+
+          // hitung quantity untuk setiap id
+          const qtyMap = {};
+          cart.forEach((item) => {
+            qtyMap[item.id] = (qtyMap[item.id] || 0) + 1;
+          });
+
+          // tampilkan keranjang + checkbox beli
+          Object.keys(qtyMap).forEach((id) => {
+            const produk = data.find((p) => p.id === id);
+            const qty = qtyMap[id];
+
+            container.innerHTML += `
+              <div class="card mb-2 p-3 shadow-sm">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <h6 class="fw-bold mb-1">${produk.nama}</h6>
+                    <p class="text-muted mb-1">Harga: Rp ${produk.harga.toLocaleString()}</p>
+                    <p class="mb-0">Jumlah: <strong>${qty}</strong></p>
+                  </div>
+                </div>
+              </div>
+            `;
+
+            checkboxList.innerHTML += `
+              <div class="form-check mb-2">
+                <input class="form-check-input checkbox-item" type="checkbox"
+                  data-id="${produk.id}"
+                  data-harga="${produk.harga}"
+                  data-qty="${qty}">
+                <label class="form-check-label">
+                  ${produk.nama} — ${qty} barang (Rp ${(
+              produk.harga * qty
+            ).toLocaleString()})
+                </label>
+              </div>
+            `;
+          });
+        });
+
+      // hitung total setiap centang berubah
+      document.addEventListener("change", function () {
+        const checkboxes = document.querySelectorAll(".checkbox-item");
+        let total = 0;
+
+        checkboxes.forEach((cb) => {
+          if (cb.checked) {
+            const harga = Number(cb.dataset.harga);
+            const qty = Number(cb.dataset.qty);
+            total += harga * qty;
+          }
+        });
+
+        document.getElementById("buy-total").textContent =
+          total.toLocaleString();
+      });
+
+      // tombol beli
+      document.getElementById("btn-buy").addEventListener("click", () => {
+        const selected = document.querySelectorAll(".checkbox-item:checked");
+
+        if (selected.length === 0) {
+          alert("Pilih barangnya dulu ya Izumi 😄");
+          return;
+        }
+
+        selected.forEach((cb) => {
+          const id = cb.dataset.id;
+
+          // hapus semua item dengan id yang sama
+          cart = cart.filter((item) => item.id !== id);
+        });
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        alert("Barang berhasil diproses! Keranjang diperbarui ✨");
+
+        location.reload();
+      });
+    </script>
+  </body>
+</html>

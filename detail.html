@@ -43,17 +43,6 @@
         border-color: #1a8f5a;
       }
 
-      .qty-box {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-      }
-
-      .qty-box button {
-        width: 35px;
-        height: 35px;
-      }
-
       .btn-buy {
         background: #c59b2b;
         color: white;
@@ -67,7 +56,9 @@
 
   <body>
     <div class="container py-5">
-      <a href="index.html" class="btn btn-outline-dark mb-4">← Kembali</a>
+      <button class="btn btn-outline-dark mb-4" onclick="history.go(-1)">
+        ← Kembali
+      </button>
 
       <div id="detail-container" class="row g-5"></div>
     </div>
@@ -77,6 +68,8 @@
     </footer>
 
     <script>
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
       const urlParams = new URLSearchParams(window.location.search);
       const produkId = urlParams.get("id");
 
@@ -124,6 +117,14 @@
 
               <h3 class="text-danger fw-bold">Rp ${produk.harga.toLocaleString()}</h3>
 
+              <button class="btn btn-warning mb-3" onclick="addToCart('${
+                produk.id
+              }')">
+                + Tambah ke Keranjang
+              </button>
+ <p class="text-success fw-bold">Stok:
+                  <span id="stock-${produk.id}">${produk.stok || 10}</span>
+                </p>
               <p class="text-muted">${produk.deskripsi}</p>
 
               <h6 class="fw-bold mt-4">Pilih Ukuran:</h6>
@@ -142,12 +143,13 @@
                 </a>
               </div>
 
-              <p class="text-muted">Tags : ${produk.tags.join(", ")}</p>
-
+              <p class="text-muted">Tags : 
+                ${(produk.tags || []).join(", ")}
+              </p>
             </div>
           `;
 
-          // ⬇⬇⬇ EVENT LISTENER DIPASANG SETELAH HTML TERBENTUK
+          // aktifkan size selector
           document.querySelectorAll(".size-btn").forEach((btn) => {
             btn.addEventListener("click", function () {
               document
@@ -158,20 +160,17 @@
           });
         });
 
+      // ganti gambar utama
       function changeImage(src) {
         document.getElementById("main-image").src = src;
       }
 
-      function addQty() {
-        let q = document.getElementById("qty");
-        q.innerText = parseInt(q.innerText) + 1;
-      }
+      // tambah ke keranjang
+      function addToCart(id) {
+        cart.push({ id: id });
+        localStorage.setItem("cart", JSON.stringify(cart));
 
-      function minQty() {
-        let q = document.getElementById("qty");
-        if (parseInt(q.innerText) > 1) {
-          q.innerText = parseInt(q.innerText) - 1;
-        }
+        alert("Produk berhasil ditambahkan ke keranjang!");
       }
     </script>
   </body>
