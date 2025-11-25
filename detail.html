@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail Produk</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        background: #faf7f2;
+      }
+
+      .thumb-img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 10px;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: 0.2s;
+      }
+
+      .thumb-img:hover {
+        border-color: #1a8f5a;
+      }
+
+      .size-btn {
+        border: 1px solid #ccc;
+        padding: 6px 14px;
+        border-radius: 25px;
+        margin-right: 6px;
+        cursor: pointer;
+      }
+
+      .size-btn.active {
+        background: #1a8f5a;
+        color: white;
+        border-color: #1a8f5a;
+      }
+
+      .qty-box {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .qty-box button {
+        width: 35px;
+        height: 35px;
+      }
+
+      .btn-buy {
+        background: #c59b2b;
+        color: white;
+      }
+
+      .btn-buy:hover {
+        background: #a78423;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container py-5">
+      <a href="index.html" class="btn btn-outline-dark mb-4">← Kembali</a>
+
+      <div id="detail-container" class="row g-5"></div>
+    </div>
+
+    <footer class="text-center py-3">
+      <p>&copy; 2023 Toko Baju Minimalis. Semua hak dilindungi.</p>
+    </footer>
+
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const produkId = urlParams.get("id");
+
+      fetch("produk.json")
+        .then((res) => res.json())
+        .then((data) => {
+          const produk = data.find((item) => item.id === produkId);
+
+          if (!produk) {
+            document.getElementById("detail-container").innerHTML =
+              "<h3>Produk tidak ditemukan.</h3>";
+            return;
+          }
+
+          document.getElementById("detail-container").innerHTML = `
+            <div class="col-md-6 text-center">
+              <img id="main-image"
+                src="${produk.gambar}"
+                class="img-fluid shadow rounded"
+                style="max-height: 380px; object-fit: cover;"
+              >
+
+              <div class="d-flex justify-content-center gap-3 mt-3">
+                <img src="${
+                  produk.gambar
+                }" class="thumb-img" onclick="changeImage(this.src)">
+                <img src="${
+                  produk.gambar
+                }" class="thumb-img" onclick="changeImage(this.src)">
+                <img src="${
+                  produk.gambar
+                }" class="thumb-img" onclick="changeImage(this.src)">
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <p class="text-success fw-bold mb-1">Stok Tersedia</p>
+
+              <h2 class="fw-bold">${produk.nama}</h2>
+
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <span class="text-warning fs-5">★★★★★</span>
+                <span class="text-muted">(245 Review)</span>
+              </div>
+
+              <h3 class="text-danger fw-bold">Rp ${produk.harga.toLocaleString()}</h3>
+
+              <p class="text-muted">${produk.deskripsi}</p>
+
+              <h6 class="fw-bold mt-4">Pilih Ukuran:</h6>
+              <div class="mb-3">
+                <span class="size-btn active">30 ml</span>
+                <span class="size-btn">60 ml</span>
+                <span class="size-btn">80 ml</span>
+                <span class="size-btn">100 ml</span>
+              </div>
+
+              <div class="d-flex gap-3 mb-4">
+                <a href="https://wa.me/1234567890"
+                   target="_blank"
+                   class="btn btn-buy px-4">
+                  Buy Now
+                </a>
+              </div>
+
+              <p class="text-muted">Tags : ${produk.tags.join(", ")}</p>
+
+            </div>
+          `;
+
+          // ⬇⬇⬇ EVENT LISTENER DIPASANG SETELAH HTML TERBENTUK
+          document.querySelectorAll(".size-btn").forEach((btn) => {
+            btn.addEventListener("click", function () {
+              document
+                .querySelectorAll(".size-btn")
+                .forEach((b) => b.classList.remove("active"));
+              this.classList.add("active");
+            });
+          });
+        });
+
+      function changeImage(src) {
+        document.getElementById("main-image").src = src;
+      }
+
+      function addQty() {
+        let q = document.getElementById("qty");
+        q.innerText = parseInt(q.innerText) + 1;
+      }
+
+      function minQty() {
+        let q = document.getElementById("qty");
+        if (parseInt(q.innerText) > 1) {
+          q.innerText = parseInt(q.innerText) - 1;
+        }
+      }
+    </script>
+  </body>
+</html>

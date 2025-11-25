@@ -1,0 +1,273 @@
+/* Reset dan Font */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Arial", sans-serif;
+}
+
+/* Tema Warna: Cokelat (#8B4513), Hitam (#000), Putih (#FFF), Corak Putih (border dan accent) */
+body {
+  background-color: #f5f5dc; /* Latar belakang krem untuk minimalis */
+  color: #000;
+}
+
+/* Navbar Fixed */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #8b4513;
+  color: #fff;
+  padding: 10px 20px;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin: 0 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #000;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 100px 20px 50px; /* Padding atas untuk navbar fixed */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.hero.show {
+  opacity: 1;
+}
+
+.hero img {
+  width: 50%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.hero-text {
+  width: 45%;
+  text-align: left;
+  padding-left: 20px;
+}
+
+.hero-text h1 {
+  font-size: 2.5em;
+  color: #8b4513;
+  margin-bottom: 20px;
+}
+
+.hero-text p {
+  font-size: 1.2em;
+  line-height: 1.6;
+  color: #000;
+}
+
+/* Produk Section */
+.products {
+  padding: 50px 20px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.products h2 {
+  font-size: 2em;
+  color: #8b4513;
+  margin-bottom: 30px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.product-item {
+  background-color: #f5f5dc;
+  border: 1px solid #8b4513;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.product-item:hover {
+  transform: translateY(-5px);
+}
+
+.product-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.product-item h3 {
+  color: #8b4513;
+  margin-bottom: 10px;
+}
+
+.product-item p {
+  color: #000;
+  margin-bottom: 15px;
+}
+
+.product-item button {
+  background-color: #8b4513;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.product-item button:hover {
+  background-color: #000;
+}
+
+/* History Section (Muncul setelah pembelian) */
+.history {
+  padding: 50px 20px;
+  background-color: #f5f5dc;
+  display: none; /* Hidden by default, show after purchase */
+}
+
+.history.show {
+  display: block;
+}
+
+.history h2 {
+  font-size: 2em;
+  color: #8b4513;
+  margin-bottom: 20px;
+}
+
+.history ul {
+  list-style: none;
+  padding: 0;
+}
+
+.history ul li {
+  background-color: #fff;
+  border: 1px solid #8b4513;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+/* About Section */
+.about {
+  padding: 50px 20px;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+}
+
+.about h2 {
+  font-size: 2em;
+  color: #8b4513;
+  margin-bottom: 20px;
+}
+
+.about p {
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.contact {
+  margin-top: 30px;
+}
+
+.contact h3 {
+  color: #8b4513;
+}
+
+.contact p {
+  margin: 5px 0;
+}
+
+/* Footer */
+footer {
+  background-color: #8b4513;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+}
+
+/* Responsif tablet*/
+@media (max-width: 992px) {
+  h1 {
+    font-size: 32px;
+  }
+
+  .navbar-brand img {
+    width: 35px;
+  }
+
+  .product-grid {
+    display: block;
+  }
+}
+/*responsif hp*/
+@media (max-width: 768px) {
+  /* Navbar */
+  .navbar-nav {
+    gap: 1rem;
+    text-align: center;
+  }
+
+  /* Hero */
+  #home {
+    text-align: center;
+  }
+
+  #home img {
+    max-width: 260px !important;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+}
+
+/*responsif hp kecil*/
+@media (max-width: 480px) {
+  h1 {
+    font-size: 24px;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .card img {
+    height: 180px !important;
+  }
+}
