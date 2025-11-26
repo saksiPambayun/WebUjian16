@@ -1,0 +1,227 @@
+:root {
+  --brown: #8b5e3c;
+  --brown-dark: #6f452a;
+  --soft-bg: #faf7f4;
+}
+
+body {
+  background-color: var(--soft-bg);
+  /* Perhatikan: Anda mungkin perlu mengatur padding-top ini lebih rendah (misal 65px) 
+     jika navbar Anda fixed dan ada jarak kosong besar */
+  padding-top: 100px;
+  font-family: "Poppins", sans-serif;
+}
+/* --- CSS Tambahan untuk Scroll Reveal yang lebih smooth --- */
+.reveal {
+  /* Kondisi awal: Tersembunyi dan sedikit ke bawah */
+  opacity: 0;
+  transform: translateY(30px);
+  /* Durasi 1s dengan fungsi timing yang halus */
+  transition: opacity 1s cubic-bezier(0.2, 0.6, 0.4, 1),
+    transform 1s cubic-bezier(0.2, 0.6, 0.4, 1);
+}
+
+.reveal.active {
+  /* Kondisi aktif: Muncul dan kembali ke posisi normal */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- CSS Tambahan untuk Lazy Load (Memastikan gambar dimuat halus) --- */
+.img-lazy {
+  /* Kondisi awal: Transparan */
+  opacity: 0;
+  /* Transisi lebih halus 0.7s */
+  transition: opacity 0.7s ease-in;
+  /* Memastikan gambar mengisi container agar tidak terlihat cacat */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.img-lazy.loaded {
+  /* Ketika dimuat: Muncul sepenuhnya */
+  opacity: 1;
+}
+
+/* NAVBAR */
+.navbar-custom {
+  background: #fff;
+  padding: 15px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-brand img {
+  width: 42px;
+}
+
+.nav-link {
+  font-weight: 500;
+  color: #444 !important;
+}
+
+.nav-link.active {
+  color: var(--brown) !important;
+  font-weight: 600;
+}
+
+/* SEARCH BAR */
+#searchBar {
+  border-radius: 12px;
+  padding: 14px 18px;
+  border: 2px solid #ddd;
+  transition: 0.2s ease;
+}
+
+#searchBar:focus {
+  border-color: var(--brown);
+  box-shadow: 0 0 5px rgba(139, 94, 60, 0.4);
+}
+
+/* NEW PRODUCT CARD STYLE (MIRIP GAMBAR) */
+.product-card {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: 0.25s ease;
+  border: none;
+}
+
+.img-container {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.3s ease;
+}
+
+.product-card:hover img {
+  transform: scale(1.05);
+}
+
+.category-label {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 6px;
+}
+
+.rating-star {
+  color: #ffb400;
+  font-size: 14px;
+}
+
+/* ---------------------------------------------------- */
+/* *** KODE LAMA TOMBOL (btn-add-to-cart & btn-buy-now) DIHAPUS/DIGANTI DI SINI *** */
+/* ---------------------------------------------------- */
+
+/* --- KODE BARU UNTUK QUANTITY (+/-) DAN TOMBOL BARU --- */
+
+/* Tombol + dan - */
+.product-qty-controls .qty-btn {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 35px;
+  padding: 2px 0;
+  line-height: 1.5;
+  font-weight: 700;
+}
+
+.product-qty-controls .qty-value {
+  min-width: 30px;
+  text-align: center;
+  font-size: 1rem;
+  color: #444;
+}
+
+/* 1. Tombol Tambah ke Keranjang (Gaya Cokelat) */
+.btn-add-to-cart {
+  background: var(--brown); /* Warna utama cokelat */
+  color: #fff;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  transition: 0.2s ease;
+}
+
+.btn-add-to-cart:hover {
+  background: var(--brown-dark); /* Cokelat gelap saat hover */
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(139, 94, 60, 0.4);
+}
+
+/* 2. Tombol Buy Now (Gaya Outline Cokelat) */
+.btn-buy-now-brown {
+  background: #fff; /* Latar belakang putih */
+  color: var(--brown); /* Teks cokelat */
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid var(--brown); /* Border cokelat */
+  transition: 0.2s ease;
+}
+
+.btn-buy-now-brown:hover {
+  background: #fcf6f0; /* Latar belakang sedikit off-white saat hover */
+  color: var(--brown-dark); /* Teks cokelat lebih gelap */
+  border-color: var(--brown-dark);
+}
+
+/* Tombol Lihat Detail */
+.btn-outline-secondary {
+  border-color: #ccc !important;
+  color: #444 !important;
+}
+
+.btn-outline-secondary:hover {
+  background: #f5f5f5 !important;
+  border-color: #aaa !important;
+}
+/* ---------------------------------------------------- */
+/* --- AKHIR KODE BARU --- */
+/* ---------------------------------------------------- */
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* PAGINATION */
+.pagination .page-link {
+  border-radius: 8px;
+  color: var(--brown);
+}
+
+.pagination .active .page-link {
+  background-color: var(--brown);
+  border-color: var(--brown);
+}
+.title-brown {
+  color: #6f452a;
+  font-weight: 700;
+}
+
+.btn-brown-outline {
+  border: 2px solid #6f452a !important;
+  color: #6f452a !important;
+  font-weight: 600;
+  padding: 8px 18px !important;
+  border-radius: 10px;
+  transition: 0.25s ease;
+}
+
+.btn-brown-outline:hover {
+  background: #6f452a !important;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}

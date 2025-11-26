@@ -1,0 +1,242 @@
+:root {
+  --brown: #8b5e3c;
+  --brown-dark: #6f452a;
+  --soft-bg: #faf7f4;
+}
+
+body {
+  background-color: var(--soft-bg);
+  padding-top: 65px;
+  font-family: "Poppins", sans-serif;
+}
+/* --- CSS untuk Scroll Reveal yang SANGAT smooth (index.css) --- */
+.reveal {
+  /* Kondisi awal: Tersembunyi dan sedikit ke bawah */
+  opacity: 0;
+  transform: translateY(40px); /* Jarak pergerakan sedikit ditambah */
+
+  /* *** PERUBAHAN UTAMA DI SINI *** */
+  /* Durasi diperpanjang menjadi 1.2s dan menggunakan fungsi timing yang lebih "melayang" */
+  transition: opacity 1.2s cubic-bezier(0.23, 1, 0.32, 1),
+    transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+  /* ================================ */
+}
+
+.reveal.active {
+  /* Kondisi aktif: Muncul dan kembali ke posisi normal */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Perubahan untuk Lazy Load Gambar agar lebih halus --- */
+.img-lazy {
+  opacity: 0;
+  /* Durasi lazy load diperpanjang dari 0.7s menjadi 1s */
+  transition: opacity 1s ease-in-out;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.img-lazy.loaded {
+  opacity: 1;
+}
+
+/* Sisa CSS Anda yang lain ... */
+
+/* Sisa CSS Anda yang lain tidak berubah */
+/* ... */
+/* NAVBAR */
+.navbar-custom {
+  background: #fff;
+  padding: 15px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-brand img {
+  width: 42px;
+}
+
+.nav-link {
+  font-weight: 500;
+  color: #444 !important;
+}
+
+.nav-link.active {
+  color: var(--brown) !important;
+  font-weight: 600;
+}
+
+/* CARD PRODUK MIRIP ALLPRODUK */
+.product-card {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: 0.25s ease;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+}
+.img-container {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.3s ease;
+}
+.product-card:hover img {
+  transform: scale(1.05);
+}
+.category-label {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 6px;
+}
+.card-body {
+  padding: 1.2rem 1rem 1rem 1rem;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.card-body > .d-flex.align-items-center.gap-2 {
+  margin-top: auto; /* <-- INI YANG PALING PENTING */
+}
+.btn-warning {
+  border-radius: 8px;
+  font-weight: 600;
+}
+.btn-dark {
+  border-radius: 8px;
+  font-weight: 600;
+}
+.d-flex.gap-2 {
+  gap: 0.5rem !important;
+}
+#produk-list {
+  margin-top: 0.5rem;
+}
+/* FOOTER FIX */
+.footer-custom {
+  background-color: #8b5e3c; /* Gunakan warna dark Bootstrap */
+  padding-top: 2rem;
+  padding-bottom: 0;
+}
+.footer-custom .form-control {
+  background-color: #6f452a;
+  border: 1px solid #6f452a;
+  color: white;
+}
+.footer-custom .form-label {
+  color: rgba(255, 255, 255, 0.7);
+}
+/* Karena ikon Font Awesome tidak dimuat, ganti dengan teks atau ikon Bootstrap/dummy */
+.btn-floating {
+  display: inline-block;
+  width: 38px;
+  height: 38px;
+  line-height: 38px;
+  text-align: center;
+  border-radius: 50%;
+  margin-right: 5px;
+  background-color: #fff;
+  color: #343a40;
+}
+.btn-brown {
+  border: 2px solid #6f452a !important;
+  color: #6f452a !important;
+  font-weight: 600;
+  padding: 10px 20px !important;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: 0.25s ease;
+}
+
+.btn-brown:hover {
+  background: #6f452a !important;
+  color: white !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* SECTION CONTACT PREMIUM */
+.contact-section {
+  background: #f6f1ea;
+  border-radius: 22px;
+  padding: 50px;
+  box-shadow: 0 5px 20px rgba(90, 62, 35, 0.08);
+}
+
+/* TITLE */
+.section-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: #5a3e23;
+  letter-spacing: 0.5px;
+}
+
+/* CONTACT CARD */
+.contact-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e5d8c8;
+  box-shadow: 0 6px 18px rgba(90, 62, 35, 0.12);
+  transition: 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(90, 62, 35, 0.18);
+}
+
+/* INPUT PREMIUM */
+.custom-input {
+  background: #fdfaf7;
+  border: 1px solid #e1d4c5;
+  padding: 12px 14px;
+  border-radius: 10px;
+  color: #5a3e23;
+  font-size: 15px;
+}
+
+.custom-input:focus {
+  border-color: #b48a63;
+  box-shadow: 0 0 0 3px rgba(180, 138, 99, 0.25);
+}
+
+/* BUTTON PREMIUM */
+.btn-primary {
+  background: #7a5831 !important;
+  border: none !important;
+  padding: 12px 26px;
+  border-radius: 10px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.btn-primary:hover {
+  background: #5a3e23 !important;
+}
+
+/* MAP */
+#contact iframe {
+  border: 0;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(90, 62, 35, 0.12);
+}

@@ -4,159 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Web Penjualan Baju Minimalis</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="index.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <style>
-      :root {
-        --brown: #8b5e3c;
-        --brown-dark: #6f452a;
-        --soft-bg: #faf7f4;
-      }
-
-      body {
-        background-color: var(--soft-bg);
-        padding-top: 100px;
-        font-family: "Poppins", sans-serif;
-      }
-
-      /* NAVBAR */
-      .navbar-custom {
-        background: #fff;
-        padding: 15px 0;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      }
-
-      .navbar-brand img {
-        width: 42px;
-      }
-
-      .nav-link {
-        font-weight: 500;
-        color: #444 !important;
-      }
-
-      .nav-link.active {
-        color: var(--brown) !important;
-        font-weight: 600;
-      }
-
-      /* CARD PRODUK MIRIP ALLPRODUK */
-      .product-card {
-        background: #fff;
-        border-radius: 14px;
-        overflow: hidden;
-        transition: 0.25s ease;
-        border: none;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-      }
-      .product-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
-      }
-      .img-container {
-        position: relative;
-        width: 100%;
-        height: 220px;
-        overflow: hidden;
-      }
-      .img-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: 0.3s ease;
-      }
-      .product-card:hover img {
-        transform: scale(1.05);
-      }
-      .category-label {
-        position: absolute;
-        top: 12px;
-        right: 12px;
-        background: rgba(0, 0, 0, 0.75);
-        color: #fff;
-        padding: 4px 10px;
-        font-size: 12px;
-        border-radius: 6px;
-      }
-      .card-body {
-        padding: 1.2rem 1rem 1rem 1rem;
-        flex: 1 1 auto;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-      .card-body > .d-flex.align-items-center.gap-2 {
-        margin-top: auto; /* <-- INI YANG PALING PENTING */
-      }
-      .btn-warning {
-        border-radius: 8px;
-        font-weight: 600;
-      }
-      .btn-dark {
-        border-radius: 8px;
-        font-weight: 600;
-      }
-      .d-flex.gap-2 {
-        gap: 0.5rem !important;
-      }
-      #produk-list {
-        margin-top: 0.5rem;
-      }
-      /* FOOTER FIX */
-      .footer-custom {
-        background-color: #8b5e3c; /* Gunakan warna dark Bootstrap */
-        padding-top: 2rem;
-        padding-bottom: 0;
-      }
-      .footer-custom .form-control {
-        background-color: #6f452a;
-        border: 1px solid #6f452a;
-        color: white;
-      }
-      .footer-custom .form-label {
-        color: rgba(255, 255, 255, 0.7);
-      }
-      /* Karena ikon Font Awesome tidak dimuat, ganti dengan teks atau ikon Bootstrap/dummy */
-      .btn-floating {
-        display: inline-block;
-        width: 38px;
-        height: 38px;
-        line-height: 38px;
-        text-align: center;
-        border-radius: 50%;
-        margin-right: 5px;
-        background-color: #fff;
-        color: #343a40;
-      }
-      .btn-brown {
-        border: 2px solid #6f452a !important;
-        color: #6f452a !important;
-        font-weight: 600;
-        padding: 10px 20px !important;
-        border-radius: 10px;
-        font-size: 1rem;
-        transition: 0.25s ease;
-      }
-
-      .btn-brown:hover {
-        background: #6f452a !important;
-        color: white !important;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-      }
-    </style>
   </head>
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
       <div class="container">
-        <a class="navbar-brand fw-bold" href="#">
+        <a class="navbar-brand fw-bold" href="index.html">
           <img src="image/logo.png" alt="logo" />
         </a>
 
@@ -172,10 +30,10 @@
         <div class="collapse navbar-collapse" id="mainNav">
           <ul class="navbar-nav mx-auto gap-3">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
+              <a class="nav-link active" href="index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="allProduk.html">Shop</a>
+              <a class="nav-link" href="allProduk.html">Shop</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#about">About Us</a>
@@ -198,12 +56,8 @@
       </div>
     </nav>
 
-    <section
-      id="home"
-      class=""
-      style="background-color: #faf7f2; margin-top: 90px"
-    >
-      <div class="container">
+    <section id="home" class="" style="background-color: #faf7f2">
+      <div class="container py-5">
         <div class="row align-items-center">
           <div class="col-md-6">
             <span class="badge bg-warning text-dark mb-3"
@@ -236,7 +90,9 @@
     </section>
 
     <section id="products" class="p-5">
-      <div class="d-flex justify-content-between align-items-center mb-3">
+      <div
+        class="d-flex justify-content-between align-items-center mb-3 reveal"
+      >
         <h2 class="fw-bold m-0">Koleksi Baju</h2>
 
         <a href="allProduk.html" class="btn btn-brown btn-sm">
@@ -254,8 +110,8 @@
 
     <section id="about" class="py-5">
       <div class="container ps-4">
-        <h2 class="mb-4 fw-bold">Tentang Kami</h2>
-        <div class="row align-items-start">
+        <h2 class="mb-4 fw-bold reveal">Tentang Kami</h2>
+        <div class="row align-items-start reveal">
           <div class="col-md-4 mb-3">
             <img
               src="image/download (6).jpeg"
@@ -283,11 +139,81 @@
       </div>
     </section>
 
-    <section id="contact" class="ps-4 pb-5">
-      <h3>Kontak Kami</h3>
-      <p>Email: info@tokobaju.com</p>
-      <p>Telepon: +62 123 456 789</p>
-      <p>Alamat: Jl. Fashion No. 123, Jakarta</p>
+    <section id="contact" class="contact-section container py-5">
+      <h3 class="section-title mb-4 reveal">Kontak Kami</h3>
+
+      <div class="row g-4 reveal">
+        <div class="col-md-6">
+          <div class="contact-card p-4 shadow-sm">
+            <p class="mb-2"><strong>Email:</strong> info@tokobaju.com</p>
+            <p class="mb-2"><strong>Telepon:</strong> +62 123 456 789</p>
+            <p class="mb-0">
+              <strong>Alamat:</strong> Jl. Fashion No. 123, Jakarta
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="contact-card p-4 shadow-sm">
+            <h5 class="mb-3">Kirim Pesan</h5>
+
+            <form>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <input
+                    type="text"
+                    class="form-control custom-input"
+                    placeholder="Nama"
+                  />
+                </div>
+                <div class="col-md-6">
+                  <input
+                    type="email"
+                    class="form-control custom-input"
+                    placeholder="Email"
+                  />
+                </div>
+                <div class="col-md-6">
+                  <input
+                    type="text"
+                    class="form-control custom-input"
+                    placeholder="Telepon"
+                  />
+                </div>
+                <div class="col-md-6">
+                  <input
+                    type="text"
+                    class="form-control custom-input"
+                    placeholder="Subject"
+                  />
+                </div>
+                <div class="col-12">
+                  <textarea
+                    class="form-control custom-input"
+                    rows="4"
+                    placeholder="Pesan"
+                  ></textarea>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary mt-3 px-4">
+                Kirim Pesan
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 reveal">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.508998719628!2d106.82239157499304!3d-6.2000002937866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5c57cd6f4e5%3A0xf0f0471970d1be65!2sJakarta!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+          width="100%"
+          height="330"
+          style="border: 0; border-radius: 12px"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
+      </div>
     </section>
 
     <footer class="text-white text-center text-lg-start footer-custom">
@@ -366,67 +292,18 @@
         <a class="text-white" href="#">TokobajuMinimalis.com</a>
       </div>
     </footer>
-    <script>
-      fetch("produk.json")
-        .then((res) => res.json())
-        .then((data) => {
-          data.sort((a, b) => Number(a.id) - Number(b.id));
-          const container = document.getElementById("produk-list");
-          container.innerHTML = data
-            .slice(0, 8)
-            .map(
-              (item) => `
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            <div class="product-card">
-              <div class="img-container">
-                <span class="category-label">${
-                  (item.tags && item.tags[0]) || "fashion"
-                }</span>
-                <img src="${item.gambar}" alt="${item.nama}" />
-              </div>
-              <div class="card-body">
-                <h5 class="fw-bold mb-1">${item.nama}</h5>
-                <p class="text-muted mb-1">${item.deskripsi}</p>
-                <p class="fw-bold fs-6 mb-2 text-dark">Rp ${item.harga.toLocaleString(
-                  "id-ID"
-                )}</p>
-                <p class="text-success fw-bold mb-2">
-                  Stok: <span id="stock-${item.id}">${item.stok || 10}</span>
-                </p>
-                <div class="d-flex align-items-center gap-2 mb-3">
-                  <button class="btn btn-outline-dark btn-sm" onclick="minusQty('${
-                    item.id
-                  }')">−</button>
-                  <span id="qty-${item.id}" class="fw-bold">1</span>
-                  <button class="btn btn-outline-dark btn-sm" onclick="plusQty('${
-                    item.id
-                  }')">+</button>
-                </div>
-                <div class="d-flex gap-2 mb-2">
-                  <button class="btn btn-warning w-100" onclick="addToCart('${
-                    item.id
-                  }')">Tambah ke Keranjang</button>
-                  <button class="btn btn-dark w-100" onclick="showDetail('${
-                    item.id
-                  }')">Detail</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        `
-            )
-            .join("");
-        });
 
-      // KERANJANG
+    <script>
+      // Global variable untuk menyimpan semua produk
+      let allProducts = [];
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+      // --- UTILITY FUNCTONS ---
       function updateCartCount() {
+        // Menghitung jumlah item unik di keranjang
         document.getElementById("cart-count").textContent = cart.length;
       }
-      updateCartCount();
 
-      // TOMBOL + QTY
       function plusQty(id) {
         const qtyEl = document.getElementById("qty-" + id);
         const stockEl = document.getElementById("stock-" + id);
@@ -440,7 +317,6 @@
         }
       }
 
-      // TOMBOL - QTY
       function minusQty(id) {
         const qtyEl = document.getElementById("qty-" + id);
         let qty = parseInt(qtyEl.textContent);
@@ -477,6 +353,202 @@
       function showDetail(id) {
         window.location.href = "detail.html?id=" + id;
       }
+
+      // 1. Smooth Scroll
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href");
+          if (targetId && targetId !== "#") {
+            document.querySelector(targetId).scrollIntoView({
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+
+      // 2. Scroll Reveal / Fade-in Element
+      function setupScrollReveal() {
+        const revealElements = document.querySelectorAll(".reveal");
+
+        const observer = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+                observer.unobserve(entry.target); // Stop mengamati setelah muncul
+              }
+            });
+          },
+          {
+            threshold: 0.1, // Elemen muncul ketika 10% dari elemen terlihat
+          }
+        );
+
+        revealElements.forEach((el) => {
+          observer.observe(el);
+        });
+      }
+
+      // 3. Lazy Loading Gambar
+      function setupLazyLoading() {
+        const lazyImages = document.querySelectorAll("img.img-lazy");
+
+        const imageObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const img = entry.target;
+                const src = img.getAttribute("data-src");
+
+                if (src) {
+                  // Ganti data-src ke src untuk memuat gambar
+                  img.src = src;
+
+                  // Tambahkan class 'loaded' untuk efek fade-in
+                  img.addEventListener("load", () => {
+                    img.classList.add("loaded");
+                  });
+                }
+                observer.unobserve(img);
+              }
+            });
+          },
+          {
+            rootMargin: "0px 0px 50px 0px", // Mulai memuat gambar 50px sebelum masuk viewport
+            threshold: 0.01,
+          }
+        );
+
+        lazyImages.forEach((img) => {
+          imageObserver.observe(img);
+        });
+      }
+
+      // 4. Fungsi Pencarian Footer
+      function searchPagesAndProducts() {
+        const query = document
+          .getElementById("footerSearch")
+          .value.toLowerCase();
+        const resultsContainer = document.getElementById("footerSearchResults");
+        resultsContainer.innerHTML = "";
+
+        // Hanya mencari jika query minimal 2 karakter
+        if (query.length < 2) return;
+
+        let found = false;
+
+        // Cari Produk
+        const productMatches = allProducts.filter(
+          (p) =>
+            p.nama.toLowerCase().includes(query) ||
+            p.deskripsi.toLowerCase().includes(query)
+        );
+
+        if (productMatches.length > 0) {
+          found = true;
+          const productsList = productMatches
+            .slice(0, 3)
+            .map(
+              (p) =>
+                `<p class="m-0"><a href="detail.html?id=${p.id}" class="text-warning text-decoration-none">${p.nama}</a> (Produk)</p>`
+            )
+            .join("");
+          resultsContainer.innerHTML += `<h6>Produk (${productMatches.length} ditemukan):</h6>${productsList}`;
+        }
+
+        // Cari Halaman (Contoh sederhana)
+        const pages = [
+          { name: "Home", url: "index.html" },
+          { name: "Shop / All Produk", url: "allProduk.html" },
+          { name: "Keranjang", url: "cart.html" },
+        ];
+
+        const pageMatches = pages.filter((p) =>
+          p.name.toLowerCase().includes(query)
+        );
+
+        if (pageMatches.length > 0) {
+          found = true;
+          const pagesList = pageMatches
+            .map(
+              (p) =>
+                `<p class="m-0"><a href="${p.url}" class="text-white text-decoration-none">${p.name}</a> (Halaman)</p>`
+            )
+            .join("");
+          resultsContainer.innerHTML += `<h6 class="mt-2">Halaman:</h6>${pagesList}`;
+        }
+
+        if (!found) {
+          resultsContainer.innerHTML = `<p class="text-white">Tidak ada hasil ditemukan.</p>`;
+        }
+      }
+
+      // --- INISIASI SAAT HALAMAN DIMUAT ---
+      fetch("produk.json")
+        .then((res) => res.json())
+        .then((data) => {
+          allProducts = data; // Simpan data global
+          data.sort((a, b) => Number(a.id) - Number(b.id));
+          const container = document.getElementById("produk-list");
+
+          // Render hanya 8 produk pertama
+          container.innerHTML = data
+            .slice(0, 8)
+            .map(
+              (item) => `
+              <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="product-card reveal">
+                  <div class="img-container">
+                    <span class="category-label">${
+                      (item.tags && item.tags[0]) || "fashion"
+                    }</span>
+                    <img 
+                        class="img-lazy" 
+                        data-src="${item.gambar}" 
+                        alt="${item.nama}" /> 
+                  </div>
+                  <div class="card-body">
+                    <h5 class="fw-bold mb-1">${item.nama}</h5>
+                    <p class="text-muted mb-1">${item.deskripsi}</p>
+                    <p class="fw-bold fs-6 mb-2 text-dark">Rp ${item.harga.toLocaleString(
+                      "id-ID"
+                    )}</p>
+                    <p class="text-success fw-bold mb-2">
+                      Stok: <span id="stock-${item.id}">${
+                item.stok || 10
+              }</span>
+                    </p>
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                      <button class="btn btn-outline-dark btn-sm" onclick="minusQty('${
+                        item.id
+                      }')">−</button>
+                      <span id="qty-${item.id}" class="fw-bold">1</span>
+                      <button class="btn btn-outline-dark btn-sm" onclick="plusQty('${
+                        item.id
+                      }')">+</button>
+                    </div>
+                    <div class="d-flex gap-2 mb-2">
+                      <button class="btn btn-warning w-100" onclick="addToCart('${
+                        item.id
+                      }')">Tambah ke Keranjang</button>
+                      <button class="btn btn-dark w-100" onclick="showDetail('${
+                        item.id
+                      }')">Detail</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `
+            )
+            .join("");
+
+          // Panggil fungsi setelah semua elemen dirender
+          setupLazyLoading();
+          setupScrollReveal();
+        });
+
+      updateCartCount(); // Pastikan keranjang terupdate saat awal dimuat
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>

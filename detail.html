@@ -13,6 +13,19 @@
     <style>
       body {
         background: #faf7f2;
+        padding-bottom: 80px; /* biar konten gak ketiban footer */
+      }
+
+      footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        border-top: 1px solid #dcdcdc;
+        padding: 12px 0;
+        text-align: center;
+        z-index: 99;
       }
 
       .thumb-img {
@@ -31,7 +44,7 @@
 
       .size-btn {
         padding: 8px 14px;
-        border: 2px solid #6f452a; /* warna brown */
+        border: 2px solid #6f452a;
         border-radius: 10px;
         font-size: 14px;
         cursor: pointer;
@@ -46,7 +59,6 @@
         color: white;
       }
 
-      /* tombol Buy Now */
       .btn-buy {
         background: #6f452a;
         color: white;
@@ -73,7 +85,8 @@
       <div id="detail-container" class="row g-5"></div>
     </div>
 
-    <footer class="text-center py-3">
+    <!-- FOOTER FIXED -->
+    <footer>
       <p>&copy; 2023 Toko Baju Minimalis. Semua hak dilindungi.</p>
     </footer>
 
@@ -127,52 +140,41 @@
 
               <h3 class="text-danger fw-bold">Rp ${produk.harga.toLocaleString()}</h3>
 
-              <!-- Tambah ke Keranjang -->
-<button class="btn btn-warning w-100 fw-semibold mb-3"
-        onclick="addToCart('${produk.id}')">
-  + Tambah ke Keranjang
-</button>
+              <button class="btn btn-warning w-100 fw-semibold mb-3"
+                      onclick="addToCart('${produk.id}')">
+                + Tambah ke Keranjang
+              </button>
 
-<!-- Stok -->
-<p class="text-success fw-bold mb-1">
-  Stok: <span id="stock-${produk.id}">${produk.stok || 10}</span>
-</p>
-
-<!-- Deskripsi -->
-<p class="text-muted mb-3">${produk.deskripsi}</p>
-
-<!-- Pilih Ukuran -->
-<h6 class="fw-bold mt-3">Pilih Ukuran:</h6>
-
-<div class="d-flex gap-2 flex-wrap mb-4">
-  <span class="size-btn active">30 ml</span>
-  <span class="size-btn">60 ml</span>
-  <span class="size-btn">80 ml</span>
-  <span class="size-btn">100 ml</span>
-</div>
-
-<!-- BUY NOW -->
-<div class="w-100 d-flex justify-content-center mt-4">
-  <a
-    href="https://wa.me/1234567890?text=Saya%20ingin%20beli%20Produk"
-    target="_blank"
-    class="btn btn-buy px-4 py-2 w-100"
-    style="max-width: 260px; text-align:center;"
-  >
-    Buy Now
-  </a>
-</div>
-
-
-
-
-              <p class="text-muted">Tags : 
-                ${(produk.tags || []).join(", ")}
+              <p class="text-success fw-bold mb-1">
+                Stok: <span id="stock-${produk.id}">${produk.stok || 10}</span>
               </p>
+
+              <p class="text-muted mb-3">${produk.deskripsi}</p>
+
+              <h6 class="fw-bold mt-3">Pilih Ukuran:</h6>
+
+              <div class="d-flex gap-2 flex-wrap mb-4">
+                <span class="size-btn active">30 ml</span>
+                <span class="size-btn">60 ml</span>
+                <span class="size-btn">80 ml</span>
+                <span class="size-btn">100 ml</span>
+              </div>
+
+              <div class="w-100 d-flex justify-content-center mt-4">
+                <a
+                  href="https://wa.me/1234567890?text=Saya%20ingin%20beli%20Produk"
+                  target="_blank"
+                  class="btn btn-buy px-4 py-2 w-100"
+                  style="max-width: 260px; text-align:center;"
+                >
+                  Buy Now
+                </a>
+              </div>
+
+              <p class="text-muted">Tags : ${(produk.tags || []).join(", ")}</p>
             </div>
           `;
 
-          // aktifkan size selector
           document.querySelectorAll(".size-btn").forEach((btn) => {
             btn.addEventListener("click", function () {
               document
@@ -183,16 +185,13 @@
           });
         });
 
-      // ganti gambar utama
       function changeImage(src) {
         document.getElementById("main-image").src = src;
       }
 
-      // tambah ke keranjang
       function addToCart(id) {
         cart.push({ id: id });
         localStorage.setItem("cart", JSON.stringify(cart));
-
         alert("Produk berhasil ditambahkan ke keranjang!");
       }
     </script>
