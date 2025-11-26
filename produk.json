@@ -34,7 +34,7 @@
     "nama": "Celana Jeans",
     "harga": 200000,
     "deskripsi": "Celana jeans model slim fit, tahan lama dan stylish.",
-    "gambar": "image/download (6).jpeg",
+    "gambar": "image/download (7).jpeg",
     "kualitas": "Tahan lama",
     "tags": ["fashion", "baju", "style"],
     "stock": 10
@@ -44,7 +44,7 @@
     "nama": "Sepatu Sneakers",
     "harga": 300000,
     "deskripsi": "Sepatu sneakers nyaman untuk aktivitas sehari-hari.",
-    "gambar": "image/download (7).jpeg",
+    "gambar": "image/download (8).jpeg",
     "kualitas": "Nyaman dipakai",
     "tags": ["fashion", "sepatu", "style"],
     "stock": 18
@@ -54,7 +54,7 @@
     "nama": "Topi Baseball",
     "harga": 80000,
     "deskripsi": "Topi baseball dengan desain trendy.",
-    "gambar": "image/download (8).jpeg",
+    "gambar": "image/download (9).jpeg",
     "kualitas": "Desain trendy",
     "tags": ["fashion", "aksesori", "style"],
     "stock": 25
@@ -98,5 +98,355 @@
     "kualitas": "Perlindungan UV",
     "tags": ["fashion", "aksesori", "style"],
     "stock": 22
+  },
+  {
+    "id": "11",
+    "nama": "Sweater Rajut",
+    "harga": 130000,
+    "deskripsi": "Sweater rajut hangat untuk musim dingin.",
+    "gambar": "image/download (13).jpeg",
+    "kualitas": "Hangat",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 11
+  },
+  {
+    "id": "12",
+    "nama": "Rompi Denim",
+    "harga": 140000,
+    "deskripsi": "Rompi denim stylish untuk tampilan kasual.",
+    "gambar": "image/download (14).jpeg",
+    "kualitas": "Stylish",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 9
+  },
+  {
+    "id": "13",
+    "nama": "Jaket Kulit",
+    "harga": 350000,
+    "deskripsi": "Jaket kulit asli dengan desain klasik.",
+    "gambar": "image/download (15).jpeg",
+    "kualitas": "Kulit asli",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 7
+  },
+  {
+    "id": "14",
+    "nama": "Celana Chino",
+    "harga": 160000,
+    "deskripsi": "Celana chino nyaman untuk aktivitas sehari-hari.",
+    "gambar": "image/download (16).jpeg",
+    "kualitas": "Nyaman dipakai",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 13
+  },
+  {
+    "id": "15",
+    "nama": "Sepatu Boots",
+    "harga": 400000,
+    "deskripsi": "Sepatu boots tahan air untuk petualangan outdoor.",
+    "gambar": "image/download (17).jpeg",
+    "kualitas": "Tahan air",
+    "tags": ["fashion", "sepatu", "style"],
+    "stock": 8
+  },
+  {
+    "id": "16",
+    "nama": "Topi Fedora",
+    "harga": 95000,
+    "deskripsi": "Topi fedora dengan desain elegan.",
+    "gambar": "image/download (18).jpeg",
+    "kualitas": "Desain elegan",
+    "tags": ["fashion", "aksesori", "style"],
+    "stock": 19
+  },
+  {
+    "id": "17",
+    "nama": "Tas Selempang",
+    "harga": 220000,
+    "deskripsi": "Tas selempang praktis untuk aktivitas sehari-hari.",
+    "gambar": "image/download (19).jpeg",
+    "kualitas": "Praktis",
+    "tags": ["fashion", "tas", "style"],
+    "stock": 17
+  },
+  {
+    "id": "18",
+    "nama": "Jam Tangan Sport",
+    "harga": 200000,
+    "deskripsi": "Jam tangan sport dengan fitur tahan air.",
+    "gambar": "image/download (20).jpeg",
+    "kualitas": "Tahan air",
+    "tags": ["fashion", "aksesori", "style"],
+    "stock": 21
+  },
+  {
+    "id": "19",
+    "nama": "Sandal Jepit",
+    "harga": 40000,
+    "deskripsi": "Sandal jepit nyaman untuk aktivitas santai.",
+    "gambar": "image/download (21).jpeg",
+    "kualitas": "Nyaman dipakai",
+    "tags": ["fashion", "sepatu", "style"],
+    "stock": 28
+  },
+  {
+    "id": "20",
+    "nama": "Kacamata Baca",
+    "harga": 70000,
+    "deskripsi": "Kacamata baca dengan desain modern.",
+    "gambar": "image/download (22).jpeg",
+    "kualitas": "Desain modern",
+    "tags": ["fashion", "aksesori", "style"],
+    "stock": 24
+  },
+  {
+    "id": "21",
+    "nama": "Kaos Polos Putih",
+    "harga": 50000,
+    "deskripsi": "Kaos polos bahan katun, tersedia berbagai warna.",
+    "gambar": "image/download (2).jpeg",
+    "kualitas": "Bahan premium",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 20
+  },
+  {
+    "id": "22",
+    "nama": "Kaos Polos Abu-Abu",
+    "harga": 50000,
+    "deskripsi": "Kaos polos bahan katun, tersedia berbagai warna.",
+    "gambar": "image/download (1).jpeg",
+    "kualitas": "Bahan premium",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 20
+  },
+  {
+    "id": "23",
+    "nama": "Kaos Polos Biru",
+    "harga": 50000,
+    "deskripsi": "Kaos polos bahan katun, tersedia berbagai warna.",
+    "gambar": "image/download.jpeg",
+    "kualitas": "Bahan premium",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 20
+  },
+  {
+    "id": "24",
+    "nama": "Kaos Polos Merah",
+    "harga": 50000,
+    "deskripsi": "Kaos polos bahan katun, tersedia berbagai warna.",
+    "gambar": "image/download (23).jpeg",
+    "kualitas": "Bahan premium",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 20
+  },
+  {
+    "id": "25",
+    "nama": "Kaos Polos Kuning",
+    "harga": 50000,
+    "deskripsi": "Kaos polos bahan katun, tersedia berbagai warna.",
+    "gambar": "image/download (24).jpeg",
+    "kualitas": "Bahan premium",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 20
+  },
+  {
+    "id": "26",
+    "nama": "Kaos Polos Hijau",
+    "harga": 50000,
+    "deskripsi": "Kaos polos bahan katun, tersedia berbagai warna.",
+    "gambar": "image/download (25).jpeg",
+    "kualitas": "Bahan premium",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 20
+  },
+  {
+    "id": "27",
+    "nama": "Kaos Polos Orange",
+    "harga": 50000,
+    "deskripsi": "Kaos polos bahan katun, tersedia berbagai warna.",
+    "gambar": "image/download (26).jpeg",
+    "kualitas": "Bahan premium",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 20
+  },
+  {
+    "id": "28",
+    "nama": "Kaos Polos Ungu",
+    "harga": 50000,
+    "deskripsi": "Kaos polos bahan katun, tersedia berbagai warna.",
+    "gambar": "image/download (27).jpeg",
+    "kualitas": "Bahan premium",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 20
+  },
+  {
+    "id": "29",
+    "nama": "Kaos Polos Coklat",
+    "harga": 50000,
+    "deskripsi": "Kaos polos bahan katun, tersedia berbagai warna.",
+    "gambar": "image/download (28).jpeg",
+    "kualitas": "Bahan premium",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 20
+  },
+  {
+    "id": "30",
+    "nama": "Kaos Polos Abu Tua",
+    "harga": 50000,
+    "deskripsi": "Kaos polos bahan katun, tersedia berbagai warna.",
+    "gambar": "image/download (29).jpeg",
+    "kualitas": "Bahan premium",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 20
+  },
+  {
+    "id": "31",
+    "nama": "Kaos Polos Navy",
+    "harga": 50000,
+    "deskripsi": "Kaos polos bahan katun, tersedia berbagai warna.",
+    "gambar": "image/download (30).jpeg",
+    "kualitas": "Bahan premium",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 20
+  },
+  {
+    "id": "32",
+    "nama": "Kaos Polos Olive",
+    "harga": 50000,
+    "deskripsi": "Kaos polos bahan katun, tersedia berbagai warna.",
+    "gambar": "image/download (31).jpeg",
+    "kualitas": "Bahan premium",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 20
+  },
+  {
+    "id": "33",
+    "nama": "Kaos Polos Peach",
+    "harga": 50000,
+    "deskripsi": "Kaos polos bahan katun, tersedia berbagai warna.",
+    "gambar": "image/download (32).jpeg",
+    "kualitas": "Bahan premium",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 20
+  },
+  {
+    "id": "34",
+    "nama": "Kaos Polos Lavender",
+    "harga": 50000,
+    "deskripsi": "Kaos polos bahan katun, tersedia berbagai warna.",
+    "gambar": "image/download (33).jpeg",
+    "kualitas": "Bahan premium",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 20
+  },
+  {
+    "id": "35",
+    "nama": "Kaos Polos Mint",
+    "harga": 50000,
+    "deskripsi": "Kaos polos bahan katun, tersedia berbagai warna.",
+    "gambar": "image/download (34).jpeg",
+    "kualitas": "Bahan premium",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 20
+  },
+  {
+    "id": "36",
+    "nama": "Kaos Polos Grey Melange",
+    "harga": 50000,
+    "deskripsi": "Kaos polos bahan katun, tersedia berbagai warna.",
+    "gambar": "image/download (35).jpeg",
+    "kualitas": "Bahan premium",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 20
+  },
+  {
+    "id": "37",
+    "nama": "Kaos Polos Burgundy",
+    "harga": 50000,
+    "deskripsi": "Kaos polos bahan katun, tersedia berbagai warna.",
+    "gambar": "image/download (36).jpeg",
+    "kualitas": "Bahan premium",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 20
+  },
+  {
+    "id": "38",
+    "nama": "Kaos Polos Teal",
+    "harga": 50000,
+    "deskripsi": "Kaos polos bahan katun, tersedia berbagai warna.",
+    "gambar": "image/download (37).jpeg",
+    "kualitas": "Bahan premium",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 20
+  },
+  {
+    "id": "39",
+    "nama": "Kaos Polos Coral",
+    "harga": 50000,
+    "deskripsi": "Kaos polos bahan katun, tersedia berbagai warna.",
+    "gambar": "image/download (38).jpeg",
+    "kualitas": "Bahan premium",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 20
+  },
+  {
+    "id": "40",
+    "nama": "Kaos Polos Sky Blue",
+    "harga": 50000,
+    "deskripsi": "Kaos polos bahan katun, tersedia berbagai warna.",
+    "gambar": "image/download (39).jpeg",
+    "kualitas": "Bahan premium",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 20
+  },
+  {
+    "id": "41",
+    "nama": "Kaos Polos Light Green",
+    "harga": 50000,
+    "deskripsi": "Kaos polos bahan katun, tersedia berbagai warna.",
+    "gambar": "image/download (40).jpeg",
+    "kualitas": "Bahan premium",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 20
+  },
+  {
+    "id": "42",
+    "nama": "Kaos Polos Light Pink",
+    "harga": 50000,
+    "deskripsi": "Kaos polos bahan katun, tersedia berbagai warna.",
+    "gambar": "image/download (41).jpeg",
+    "kualitas": "Bahan premium",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 20
+  },
+  {
+    "id": "43",
+    "nama": "Kaos Polos Dark Green",
+    "harga": 50000,
+    "deskripsi": "Kaos polos bahan katun, tersedia berbagai warna.",
+    "gambar": "image/download (42).jpeg",
+    "kualitas": "Bahan premium",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 20
+  },
+  {
+    "id": "44",
+    "nama": "Kaos Polos Dark Blue",
+    "harga": 50000,
+    "deskripsi": "Kaos polos bahan katun, tersedia berbagai warna.",
+    "gambar": "image/download (43).jpeg",
+    "kualitas": "Bahan premium",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 20
+  },
+  {
+    "id": "45",
+    "nama": "Kaos Polos Mustard",
+    "harga": 50000,
+    "deskripsi": "Kaos polos bahan katun, tersedia berbagai warna.",
+    "gambar": "image/download (44).jpeg",
+    "kualitas": "Bahan premium",
+    "tags": ["fashion", "baju", "style"],
+    "stock": 20
   }
 ]

@@ -3,58 +3,427 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Koleksi Produk</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --brown: #8b5e3c;
+        --brown-dark: #6f452a;
+        --soft-bg: #faf7f4;
+      }
+
+      body {
+        background-color: var(--soft-bg);
+        padding-top: 100px;
+        font-family: "Poppins", sans-serif;
+      }
+
+      /* NAVBAR */
+      .navbar-custom {
+        background: #fff;
+        padding: 15px 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+
+      .navbar-brand img {
+        width: 42px;
+      }
+
+      .nav-link {
+        font-weight: 500;
+        color: #444 !important;
+      }
+
+      .nav-link.active {
+        color: var(--brown) !important;
+        font-weight: 600;
+      }
+
+      /* SEARCH BAR */
+      #searchBar {
+        border-radius: 12px;
+        padding: 14px 18px;
+        border: 2px solid #ddd;
+        transition: 0.2s ease;
+      }
+
+      #searchBar:focus {
+        border-color: var(--brown);
+        box-shadow: 0 0 5px rgba(139, 94, 60, 0.4);
+      }
+
+      /* NEW PRODUCT CARD STYLE (MIRIP GAMBAR) */
+      .product-card {
+        background: #fff;
+        border-radius: 14px;
+        overflow: hidden;
+        transition: 0.25s ease;
+        border: none;
+      }
+
+      .img-container {
+        position: relative;
+        width: 100%;
+        height: 250px;
+        overflow: hidden;
+      }
+
+      .img-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.3s ease;
+      }
+
+      .product-card:hover img {
+        transform: scale(1.05);
+      }
+
+      .category-label {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: rgba(0, 0, 0, 0.75);
+        color: #fff;
+        padding: 4px 10px;
+        font-size: 12px;
+        border-radius: 6px;
+      }
+
+      .rating-star {
+        color: #ffb400;
+        font-size: 14px;
+      }
+
+      .btn-add-to-cart {
+        border: 2px solid var(--brown);
+        background: #fff;
+        color: var(--brown);
+        font-weight: 600;
+        border-radius: 8px;
+      }
+
+      .btn-add-to-cart:hover {
+        background: var(--brown);
+        color: #fff;
+      }
+
+      .btn-buy-now {
+        background: var(--brown);
+        color: #fff;
+        font-weight: 600;
+        border-radius: 8px;
+      }
+
+      .btn-buy-now:hover {
+        background: var(--brown-dark);
+        color: #fff;
+      }
+
+      .product-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+      }
+
+      /* PAGINATION */
+      .pagination .page-link {
+        border-radius: 8px;
+        color: var(--brown);
+      }
+
+      .pagination .active .page-link {
+        background-color: var(--brown);
+        border-color: var(--brown);
+      }
+      .title-brown {
+        color: #6f452a;
+        font-weight: 700;
+      }
+
+      .btn-brown-outline {
+        border: 2px solid #6f452a !important;
+        color: #6f452a !important;
+        font-weight: 600;
+        padding: 8px 18px !important;
+        border-radius: 10px;
+        transition: 0.25s ease;
+      }
+
+      .btn-brown-outline:hover {
+        background: #6f452a !important;
+        color: white !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      }
+    </style>
   </head>
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-    crossorigin="anonymous"
-  />
+
   <body>
-    <section id="products" class="products p-5">
-      <h2>Koleksi Baju</h2>
-      <div class="product-grid">
-        <div id="produk-list" class="row g-4"></div>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">
+          <img src="image/logo.png" alt="logo" />
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav mx-auto gap-3">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="allProduk.html">Shop</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link position-relative" href="cart.html">
+                🛒 Keranjang
+                <span
+                  id="cart-count"
+                  class="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-pill"
+                  >0</span
+                >
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
+    </nav>
+
+    <!-- PRODUK -->
+    <section id="products" class="container p-4">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold title-brown">Koleksi Modern</h2>
+
+        <button class="btn btn-brown-outline" onclick="history.go(-1)">
+          ← Kembali
+        </button>
+      </div>
+
+      <div class="mb-4">
+        <input
+          type="text"
+          id="searchBar"
+          class="form-control"
+          placeholder="Cari produk terbaik..."
+          onkeyup="searchProduk()"
+        />
+      </div>
+
+      <div class="row g-4" id="produk-list"></div>
+
+      <nav>
+        <ul id="pagination" class="pagination justify-content-center mt-4"></ul>
+      </nav>
     </section>
 
+    <!-- SCRIPT -->
     <script>
+      let allData = [];
+      let filteredData = [];
+      let currentPage = 1;
+      const itemsPerPage = 12;
+
       fetch("produk.json")
         .then((res) => res.json())
         .then((data) => {
-          data.sort((a, b) => Number(a.id) - Number(b.id));
+          allData = data.sort((a, b) => Number(a.id) - Number(b.id));
+          filteredData = allData;
+          tampilkanProduk();
+        });
 
-          const container = document.getElementById("produk-list");
+      function tampilkanProduk() {
+        const container = document.getElementById("produk-list");
+        const start = (currentPage - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const paginatedItems = filteredData.slice(start, end);
 
-          container.innerHTML = data
-            .slice(0, 10) // ⬅ ambil 10 data pertama
-            .map(
-              (item) => `
-      <div class="col-md-3 col-sm-6">
-        <div class="card h-100 shadow-sm">
-          <img src="${item.gambar}" class="card-img-top" alt="${
-                item.nama
-              }" style="height: 220px; object-fit: cover;">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title fw-bold">${item.nama}</h5>
-            <p class="card-text text-muted">${item.deskripsi}</p>
-            <p class="fw-semibold mb-3">Rp ${item.harga.toLocaleString()}</p>
-            <button class="btn btn-dark mt-auto" onclick="showDetail('${
-              item.id
-            }')">
-              Detail
+        container.innerHTML = paginatedItems
+          .map((item) => {
+            const hargaFormatted = item.harga.toLocaleString("id-ID");
+            const kategori =
+              item.tags && item.tags.length > 0 ? item.tags[0] : "fashion";
+
+            return `
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="product-card p-0">
+
+          <div class="img-container position-relative">
+            <span class="category-label position-absolute badge bg-dark" 
+              style="top: 10px; right: 10px; text-transform: capitalize;">
+              ${kategori}
+            </span>
+
+            <img src="${item.gambar}" alt="${
+              item.nama
+            }" class="img-fluid w-100">
+          </div>
+
+          <div class="p-3">
+            <h6 class="fw-semibold mb-1">${item.nama}</h6>
+
+            <p class="small text-muted mb-1">
+              <span class="rating-star me-1">★</span> 
+              4.${item.id} (1.${item.id}k Reviews)
+            </p>
+
+            <p class="fw-bold fs-5 mb-2 text-dark">Rp ${hargaFormatted}</p>
+
+            <p class="text-success fw-bold mb-2">
+              Stok: <span id="stock-${item.id}">${item.stock}</span>
+            </p>
+
+            <!-- qty -->
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <button class="btn btn-outline-dark btn-sm" onclick="minusQty('${
+                item.id
+              }')">−</button>
+              <span id="qty-${item.id}" class="fw-bold">1</span>
+              <button class="btn btn-outline-dark btn-sm" onclick="plusQty('${
+                item.id
+              }', ${item.stock})">+</button>
+            </div>
+
+            <!-- buttons -->
+            <div class="d-flex gap-2">
+              <button  
+                class="btn btn-warning w-100 fw-semibold"
+                onclick="addToCart('${item.id}')">
+                Tambah ke Keranjang
+              </button>
+
+              <a  
+                class="btn btn-dark w-100 fw-semibold"
+                href="https://wa.me/628xxxxxxx?text=Saya%20ingin%20beli%20${encodeURIComponent(
+                  item.nama
+                )}"
+                target="_blank">
+                Buy Now
+              </a>
+            </div>
+
+            <button  
+              class="btn btn-outline-secondary w-100 mt-2 fw-semibold"
+              onclick="showDetail('${item.id}')">
+              Lihat Detail
             </button>
           </div>
+
         </div>
       </div>
-    `
-            )
-            .join("");
-        });
-      function showDetail(id) {
-        window.location.href = "detail.html?id=" + id;
+    `;
+          })
+          .join("");
+
+        buatPagination();
+      }
+
+      /* =========================
+        QTY SYSTEM
+  ==========================*/
+      function plusQty(id, stock) {
+        let qty = Number(document.getElementById(`qty-${id}`).textContent);
+        if (qty < stock) qty++;
+        document.getElementById(`qty-${id}`).textContent = qty;
+      }
+
+      function minusQty(id) {
+        let qty = Number(document.getElementById(`qty-${id}`).textContent);
+        if (qty > 1) qty--;
+        document.getElementById(`qty-${id}`).textContent = qty;
+      }
+
+      /* =========================
+        CART SYSTEM
+  ==========================*/
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      function addToCart(id) {
+        let qty = Number(document.getElementById(`qty-${id}`).textContent);
+
+        cart.push({ id, qty });
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        updateCartCount();
+        alert("Produk ditambahkan ke keranjang!");
+      }
+
+      function updateCartCount() {
+        document.getElementById("cart-count").textContent = cart.length;
+      }
+      updateCartCount();
+
+      /* =========================
+        PAGINATION
+  ==========================*/
+      function buatPagination() {
+        const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+        const pagination = document.getElementById("pagination");
+        pagination.innerHTML = "";
+
+        pagination.innerHTML += `
+      <li class="page-item ${currentPage === 1 ? "disabled" : ""}">
+        <a class="page-link" href="#" onclick="gantiHalaman(${
+          currentPage - 1
+        })">Prev</a>
+      </li>
+    `;
+
+        for (let i = 1; i <= totalPages; i++) {
+          pagination.innerHTML += `
+        <li class="page-item ${i === currentPage ? "active" : ""}">
+          <a class="page-link" href="#" onclick="gantiHalaman(${i})">${i}</a>
+        </li>`;
+        }
+
+        pagination.innerHTML += `
+      <li class="page-item ${currentPage === totalPages ? "disabled" : ""}">
+        <a class="page-link" href="#" onclick="gantiHalaman(${
+          currentPage + 1
+        })">Next</a>
+      </li>
+    `;
+      }
+
+      function gantiHalaman(hal) {
+        currentPage = hal;
+        tampilkanProduk();
+      }
+
+      /* =========================
+        SEARCH
+  ==========================*/
+      function searchProduk() {
+        let keyword = document.getElementById("searchBar").value.toLowerCase();
+
+        filteredData = allData.filter((item) =>
+          item.nama.toLowerCase().includes(keyword)
+        );
+
+        currentPage = 1;
+        tampilkanProduk();
       }
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

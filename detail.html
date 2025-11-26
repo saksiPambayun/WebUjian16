@@ -30,26 +30,36 @@
       }
 
       .size-btn {
-        border: 1px solid #ccc;
-        padding: 6px 14px;
-        border-radius: 25px;
-        margin-right: 6px;
+        padding: 8px 14px;
+        border: 2px solid #6f452a; /* warna brown */
+        border-radius: 10px;
+        font-size: 14px;
         cursor: pointer;
+        color: #6f452a;
+        font-weight: 600;
+        transition: 0.25s ease;
       }
 
+      .size-btn:hover,
       .size-btn.active {
-        background: #1a8f5a;
+        background: #6f452a;
         color: white;
-        border-color: #1a8f5a;
       }
 
+      /* tombol Buy Now */
       .btn-buy {
-        background: #c59b2b;
+        background: #6f452a;
         color: white;
+        font-weight: 600;
+        border-radius: 8px;
+        padding: 10px 20px;
+        transition: 0.25s ease;
       }
 
       .btn-buy:hover {
-        background: #a78423;
+        background: #54321f;
+        color: white;
+        transform: translateY(-2px);
       }
     </style>
   </head>
@@ -117,31 +127,44 @@
 
               <h3 class="text-danger fw-bold">Rp ${produk.harga.toLocaleString()}</h3>
 
-              <button class="btn btn-warning mb-3" onclick="addToCart('${
-                produk.id
-              }')">
-                + Tambah ke Keranjang
-              </button>
- <p class="text-success fw-bold">Stok:
-                  <span id="stock-${produk.id}">${produk.stok || 10}</span>
-                </p>
-              <p class="text-muted">${produk.deskripsi}</p>
+              <!-- Tambah ke Keranjang -->
+<button class="btn btn-warning w-100 fw-semibold mb-3"
+        onclick="addToCart('${produk.id}')">
+  + Tambah ke Keranjang
+</button>
 
-              <h6 class="fw-bold mt-4">Pilih Ukuran:</h6>
-              <div class="mb-3">
-                <span class="size-btn active">30 ml</span>
-                <span class="size-btn">60 ml</span>
-                <span class="size-btn">80 ml</span>
-                <span class="size-btn">100 ml</span>
-              </div>
+<!-- Stok -->
+<p class="text-success fw-bold mb-1">
+  Stok: <span id="stock-${produk.id}">${produk.stok || 10}</span>
+</p>
 
-              <div class="d-flex gap-3 mb-4">
-                <a href="https://wa.me/1234567890"
-                   target="_blank"
-                   class="btn btn-buy px-4">
-                  Buy Now
-                </a>
-              </div>
+<!-- Deskripsi -->
+<p class="text-muted mb-3">${produk.deskripsi}</p>
+
+<!-- Pilih Ukuran -->
+<h6 class="fw-bold mt-3">Pilih Ukuran:</h6>
+
+<div class="d-flex gap-2 flex-wrap mb-4">
+  <span class="size-btn active">30 ml</span>
+  <span class="size-btn">60 ml</span>
+  <span class="size-btn">80 ml</span>
+  <span class="size-btn">100 ml</span>
+</div>
+
+<!-- BUY NOW -->
+<div class="w-100 d-flex justify-content-center mt-4">
+  <a
+    href="https://wa.me/1234567890?text=Saya%20ingin%20beli%20Produk"
+    target="_blank"
+    class="btn btn-buy px-4 py-2 w-100"
+    style="max-width: 260px; text-align:center;"
+  >
+    Buy Now
+  </a>
+</div>
+
+
+
 
               <p class="text-muted">Tags : 
                 ${(produk.tags || []).join(", ")}

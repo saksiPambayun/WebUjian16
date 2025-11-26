@@ -9,15 +9,155 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <style>
+      :root {
+        --brown: #8b5e3c;
+        --brown-dark: #6f452a;
+        --soft-bg: #faf7f4;
+      }
+
+      body {
+        background-color: var(--soft-bg);
+        padding-top: 100px;
+        font-family: "Poppins", sans-serif;
+      }
+
+      /* NAVBAR */
+      .navbar-custom {
+        background: #fff;
+        padding: 15px 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+
+      .navbar-brand img {
+        width: 42px;
+      }
+
+      .nav-link {
+        font-weight: 500;
+        color: #444 !important;
+      }
+
+      .nav-link.active {
+        color: var(--brown) !important;
+        font-weight: 600;
+      }
+
+      /* CARD PRODUK MIRIP ALLPRODUK */
+      .product-card {
+        background: #fff;
+        border-radius: 14px;
+        overflow: hidden;
+        transition: 0.25s ease;
+        border: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      .product-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+      }
+      .img-container {
+        position: relative;
+        width: 100%;
+        height: 220px;
+        overflow: hidden;
+      }
+      .img-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.3s ease;
+      }
+      .product-card:hover img {
+        transform: scale(1.05);
+      }
+      .category-label {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: rgba(0, 0, 0, 0.75);
+        color: #fff;
+        padding: 4px 10px;
+        font-size: 12px;
+        border-radius: 6px;
+      }
+      .card-body {
+        padding: 1.2rem 1rem 1rem 1rem;
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .card-body > .d-flex.align-items-center.gap-2 {
+        margin-top: auto; /* <-- INI YANG PALING PENTING */
+      }
+      .btn-warning {
+        border-radius: 8px;
+        font-weight: 600;
+      }
+      .btn-dark {
+        border-radius: 8px;
+        font-weight: 600;
+      }
+      .d-flex.gap-2 {
+        gap: 0.5rem !important;
+      }
+      #produk-list {
+        margin-top: 0.5rem;
+      }
+      /* FOOTER FIX */
+      .footer-custom {
+        background-color: #8b5e3c; /* Gunakan warna dark Bootstrap */
+        padding-top: 2rem;
+        padding-bottom: 0;
+      }
+      .footer-custom .form-control {
+        background-color: #6f452a;
+        border: 1px solid #6f452a;
+        color: white;
+      }
+      .footer-custom .form-label {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      /* Karena ikon Font Awesome tidak dimuat, ganti dengan teks atau ikon Bootstrap/dummy */
+      .btn-floating {
+        display: inline-block;
+        width: 38px;
+        height: 38px;
+        line-height: 38px;
+        text-align: center;
+        border-radius: 50%;
+        margin-right: 5px;
+        background-color: #fff;
+        color: #343a40;
+      }
+      .btn-brown {
+        border: 2px solid #6f452a !important;
+        color: #6f452a !important;
+        font-weight: 600;
+        padding: 10px 20px !important;
+        border-radius: 10px;
+        font-size: 1rem;
+        transition: 0.25s ease;
+      }
+
+      .btn-brown:hover {
+        background: #6f452a !important;
+        color: white !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      }
+    </style>
   </head>
 
   <body>
-    <nav
-      class="navbar navbar-expand-lg navbar-light bg-white position-fixed shadow-sm py-3 w-100"
-    >
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
       <div class="container">
-        <a class="navbar-brand d-flex align-items-center fw-bold" href="#">
-          <img src="image/logo.png" alt="logo" width="40" />
+        <a class="navbar-brand fw-bold" href="#">
+          <img src="image/logo.png" alt="logo" />
         </a>
 
         <button
@@ -31,26 +171,26 @@
 
         <div class="collapse navbar-collapse" id="mainNav">
           <ul class="navbar-nav mx-auto gap-3">
-            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
             <li class="nav-item">
-              <a class="nav-link" href="#products">Shop</a>
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="allProduk.html">Shop</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#about">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#contact">Contact Us</a>
+              <a class="nav-link" href="#contact">Contact</a>
             </li>
-
             <li class="nav-item">
               <a class="nav-link position-relative" href="cart.html">
                 🛒 Keranjang
                 <span
                   id="cart-count"
                   class="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-pill"
+                  >0</span
                 >
-                  0
-                </span>
               </a>
             </li>
           </ul>
@@ -60,7 +200,7 @@
 
     <section
       id="home"
-      class="py-5"
+      class=""
       style="background-color: #faf7f2; margin-top: 90px"
     >
       <div class="container">
@@ -96,7 +236,14 @@
     </section>
 
     <section id="products" class="p-5">
-      <h2 class="fw-bold">Koleksi Baju</h2>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="fw-bold m-0">Koleksi Baju</h2>
+
+        <a href="allProduk.html" class="btn btn-brown btn-sm">
+          Lihat Semua Produk
+        </a>
+      </div>
+
       <div class="row g-4" id="produk-list"></div>
     </section>
 
@@ -143,36 +290,109 @@
       <p>Alamat: Jl. Fashion No. 123, Jakarta</p>
     </section>
 
-    <footer class="text-center py-3 bg-light">
-      <p>&copy; 2023 Toko Baju Minimalis. Semua hak dilindungi.</p>
+    <footer class="text-white text-center text-lg-start footer-custom">
+      <div class="container p-4">
+        <div class="row mt-4">
+          <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+            <h5 class="text-uppercase mb-4">About company</h5>
+
+            <p>
+              At vero eos et accusamus et iusto odio dignissimos ducimus qui
+              blanditiis praesentium voluptatum deleniti atque corrupti.
+            </p>
+
+            <p>
+              Blanditiis praesentium voluptatum deleniti atque corrupti quos
+              dolores et quas molestias.
+            </p>
+
+            <div class="mt-4">
+              <a type="button" class="btn-floating">Fb</a>
+              <a type="button" class="btn-floating">Dr</a>
+              <a type="button" class="btn-floating">Tw</a>
+              <a type="button" class="btn-floating">G+</a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase mb-4 pb-1">Cari Halaman atau Produk</h5>
+
+            <div class="form-outline form-white mb-4">
+              <input
+                type="text"
+                id="footerSearch"
+                class="form-control form-control-lg"
+                onkeyup="searchPagesAndProducts()"
+              />
+
+              <label class="form-label" for="footerSearch"
+                >Ketik kata kunci...</label
+              >
+            </div>
+
+            <div id="footerSearchResults" class="text-start"></div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase mb-4">Opening hours</h5>
+
+            <table class="table text-center text-white">
+              <tbody class="fw-normal">
+                <tr>
+                  <td>Mon - Thu:</td>
+
+                  <td>8am - 9pm</td>
+                </tr>
+
+                <tr>
+                  <td>Fri - Sat:</td>
+
+                  <td>8am - 1am</td>
+                </tr>
+
+                <tr>
+                  <td>Sunday:</td>
+
+                  <td>9am - 10pm</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        © 2020 Copyright:
+        <a class="text-white" href="#">TokobajuMinimalis.com</a>
+      </div>
     </footer>
     <script>
       fetch("produk.json")
         .then((res) => res.json())
         .then((data) => {
           data.sort((a, b) => Number(a.id) - Number(b.id));
-
           const container = document.getElementById("produk-list");
-
           container.innerHTML = data
             .slice(0, 8)
             .map(
               (item) => `
-          <div class="col-md-3 col-sm-6">
-            <div class="card h-100 shadow-sm">
-              <img src="${
-                item.gambar
-              }" class="card-img-top" style="height:220px; object-fit:cover;">
-              <div class="card-body d-flex flex-column">
-                <h5 class="fw-bold">${item.nama}</h5>
-                <p class="text-muted">${item.deskripsi}</p>
-                <p class="fw-semibold mb-2">Rp ${item.harga.toLocaleString()}</p>
-
-                <p class="text-success fw-bold">
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="product-card">
+              <div class="img-container">
+                <span class="category-label">${
+                  (item.tags && item.tags[0]) || "fashion"
+                }</span>
+                <img src="${item.gambar}" alt="${item.nama}" />
+              </div>
+              <div class="card-body">
+                <h5 class="fw-bold mb-1">${item.nama}</h5>
+                <p class="text-muted mb-1">${item.deskripsi}</p>
+                <p class="fw-bold fs-6 mb-2 text-dark">Rp ${item.harga.toLocaleString(
+                  "id-ID"
+                )}</p>
+                <p class="text-success fw-bold mb-2">
                   Stok: <span id="stock-${item.id}">${item.stok || 10}</span>
                 </p>
-
-                <!-- TOMBOL + - -->
                 <div class="d-flex align-items-center gap-2 mb-3">
                   <button class="btn btn-outline-dark btn-sm" onclick="minusQty('${
                     item.id
@@ -182,18 +402,14 @@
                     item.id
                   }')">+</button>
                 </div>
-
-                <button class="btn btn-dark mt-auto mb-2" onclick="showDetail('${
-                  item.id
-                }')">
-                  Detail
-                </button>
-
-                <button class="btn btn-warning" onclick="addToCart('${
-                  item.id
-                }')">
-                  Tambah ke Keranjang
-                </button>
+                <div class="d-flex gap-2 mb-2">
+                  <button class="btn btn-warning w-100" onclick="addToCart('${
+                    item.id
+                  }')">Tambah ke Keranjang</button>
+                  <button class="btn btn-dark w-100" onclick="showDetail('${
+                    item.id
+                  }')">Detail</button>
+                </div>
               </div>
             </div>
           </div>
