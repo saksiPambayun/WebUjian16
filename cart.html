@@ -61,13 +61,11 @@
             return;
           }
 
-          // hitung quantity untuk setiap id
           const qtyMap = {};
           cart.forEach((item) => {
             qtyMap[item.id] = (qtyMap[item.id] || 0) + 1;
           });
 
-          // tampilkan keranjang + checkbox beli
           Object.keys(qtyMap).forEach((id) => {
             const produk = data.find((p) => p.id === id);
             const qty = qtyMap[id];
@@ -97,7 +95,6 @@
                 </label>
               </div>
             `;
-            // setelah semua elemen card dimasukkan (tambahkan baris ini)
             setTimeout(() => {
               const items = document.querySelectorAll(".fade-in");
               items.forEach((item, index) => {
@@ -107,7 +104,6 @@
           });
         });
 
-      // hitung total setiap centang berubah
       document.addEventListener("change", function () {
         const checkboxes = document.querySelectorAll(".checkbox-item");
         let total = 0;
@@ -124,7 +120,6 @@
           total.toLocaleString();
       });
 
-      // tombol beli
       document.getElementById("btn-buy").addEventListener("click", () => {
         const selected = document.querySelectorAll(".checkbox-item:checked");
 
@@ -136,7 +131,6 @@
         selected.forEach((cb) => {
           const id = cb.dataset.id;
 
-          // hapus semua item dengan id yang sama
           cart = cart.filter((item) => item.id !== id);
         });
 
@@ -146,7 +140,6 @@
 
         location.reload();
       });
-      // Observer untuk animasi on-scroll
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -158,7 +151,6 @@
         { threshold: 0.2 }
       );
 
-      // apply observer ke semua elemen fade-in
       setTimeout(() => {
         document
           .querySelectorAll(".fade-in")

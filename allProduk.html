@@ -107,9 +107,6 @@
           setupScrollReveal();
         });
 
-      /* =====================================================
-       RENDER PRODUK
-    =====================================================*/
       function tampilkanProduk() {
         const container = document.getElementById("produk-list");
         const start = (currentPage - 1) * itemsPerPage;
@@ -151,15 +148,152 @@
                 </p>
 
                 <div class="d-flex align-items-center gap-2 mb-3 product-qty-controls">
-                  <button class="btn btn-outline-dark btn-sm qty-btn"
-                          onclick="minusQty('${item.id}')">−</button>
 
-                  <span id="qty-${item.id}" class="fw-bold qty-value">1</span>
+                  <!DOCTYPE html>
+                  <html lang="id">
+                    <head>
+                      <meta charset="UTF-8" />
+                      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                      <title>Koleksi Produk</title>
+                      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+                      <style>
+                        :root {
+                          --brown: #8b5e3c;
+                          --brown-dark: #6f452a;
+                          --soft-bg: #faf7f4;
+                        }
+                        body {
+                          background-color: var(--soft-bg);
+                          padding-top: 100px;
+                          font-family: "Poppins", sans-serif;
+                        }
+                        .navbar-custom {
+                          background: #fff;
+                          padding: 15px 0;
+                          box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+                        }
+                        .navbar-brand img {
+                          width: 42px;
+                        }
+                        .nav-link {
+                          font-weight: 500;
+                          color: #444 !important;
+                        }
+                        .nav-link.active {
+                          color: var(--brown) !important;
+                          font-weight: 600;
+                        }
+                        #searchBar {
+                          border-radius: 12px;
+                          padding: 14px 18px;
+                          border: 2px solid #ddd;
+                          transition: 0.2s ease;
+                        }
+                        #searchBar:focus {
+                          border-color: var(--brown);
+                          box-shadow: 0 0 5px rgba(139,94,60,0.4);
+                        }
+                        .product-card {
+                          background: #fff;
+                          border-radius: 14px;
+                          overflow: hidden;
+                          transition: 0.25s ease;
+                          border: none;
+                          box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+                          display: flex;
+                          flex-direction: column;
+                          height: 100%;
+                        }
+                        .product-card:hover {
+                          transform: translateY(-6px);
+                          box-shadow: 0 12px 20px rgba(0,0,0,0.12);
+                        }
+                        .img-container {
+                          position: relative;
+                          width: 100%;
+                          height: 250px;
+                          overflow: hidden;
+                        }
+                        .img-container img {
+                          width: 100%;
+                          height: 100%;
+                          object-fit: cover;
+                          transition: 0.3s ease;
+                        }
+                        .product-card:hover img {
+                          transform: scale(1.05);
+                        }
+                        .category-label {
+                          position: absolute;
+                          top: 12px;
+                          right: 12px;
+                          background: rgba(0,0,0,0.75);
+                          color: #fff;
+                          padding: 4px 10px;
+                          font-size: 12px;
+                          border-radius: 6px;
+                          text-transform: capitalize;
+                        }
+                        .rating-star {
+                          color: #ffb400;
+                          font-size: 14px;
+                        }
+                        .btn-warning, .btn-dark, .btn-outline-secondary {
+                          border-radius: 8px;
+                          font-weight: 600;
+                        }
+                        .pagination .page-link {
+                          border-radius: 8px;
+                          color: var(--brown);
+                        }
+                        .pagination .active .page-link {
+                          background-color: var(--brown);
+                          border-color: var(--brown);
+                          color: #fff;
+                        }
+                        .d-flex.gap-2 {
+                          gap: 0.5rem !important;
+                        }
+                        #produk-list {
+                          margin-top: 0.5rem;
+                        }
+                      </style>
+                    </head>
+                    <body>
+                      <!-- NAVBAR -->
+                      <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+                        <div class="container">
+                          <a class="navbar-brand fw-bold" href="#">
+                            <img src="image/logo.png" alt="logo" />
+                          </a>
+                          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                            <span class="navbar-toggler-icon"></span>
+                          </button>
+                          <div class="collapse navbar-collapse" id="mainNav">
+                            <ul class="navbar-nav mx-auto gap-3">
+                              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                              <li class="nav-item"><a class="nav-link active" href="allProduk.html">Shop</a></li>
+                              <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+                              <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                              <li class="nav-item">
+                                <a class="nav-link position-relative" href="cart.html">
+                                  🛒 Keranjang
+                                  <span id="cart-count" class="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-pill">0</span>
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </nav>
 
-                  <button class="btn btn-outline-dark btn-sm qty-btn"
-                          onclick="plusQty('${
-                            item.id
-                          }', ${stockValue})">+</button>
+                      <!-- PRODUK -->
+                      <section id="products" class="container p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                          <h2 class="fw-bold">Koleksi Modern</h2>
+                          <button class="btn btn-outline-dark" onclick="history.go(-1)">← Kembali</button>
+                        </div>
+                        <div class="mb-4">
+                          <input type="text" id="searchBar" class="form-control" placeholder="Cari produk terbaik..." onkeyup="searchProduk()" />
                 </div>
 
                 <div class="d-flex gap-2">
@@ -192,9 +326,6 @@
         setupScrollReveal();
       }
 
-      /* =====================================================
-       QTY
-    =====================================================*/
       function plusQty(id, stock) {
         let qty = Number(document.getElementById(`qty-${id}`).textContent);
         if (qty < stock) qty++;
@@ -207,9 +338,6 @@
         document.getElementById(`qty-${id}`).textContent = qty;
       }
 
-      /* =====================================================
-       CART
-    =====================================================*/
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
       function addToCart(id) {
@@ -242,9 +370,6 @@
         window.location.href = "detail.html?id=" + id;
       }
 
-      /* =====================================================
-       PAGINATION
-    =====================================================*/
       function buatPagination() {
         const totalPages = Math.ceil(filteredData.length / itemsPerPage);
         const pagination = document.getElementById("pagination");
@@ -285,9 +410,6 @@
         tampilkanProduk();
       }
 
-      /* =====================================================
-       SEARCH
-    =====================================================*/
       function searchProduk() {
         let keyword = document.getElementById("searchBar").value.toLowerCase();
 
@@ -301,9 +423,6 @@
         tampilkanProduk();
       }
 
-      /* =====================================================
-       SCROLL REVEAL
-    =====================================================*/
       function setupScrollReveal() {
         const elements = document.querySelectorAll(".reveal");
 
@@ -324,9 +443,6 @@
         elements.forEach((el) => observer.observe(el));
       }
 
-      /* =====================================================
-       LAZY LOAD
-    =====================================================*/
       function setupLazyLoading() {
         const images = document.querySelectorAll("img.img-lazy");
 

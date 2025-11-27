@@ -47,43 +47,23 @@ button,
   opacity: 1;
 }
 
-/* Sisa CSS Anda yang lain ... */
-
-/* Sisa CSS Anda yang lain tidak berubah */
-/* ... */
-/* NAVBAR */
 .navbar-custom {
-  display: flex;
-  align-items: center;
-  background-color: #fdfdfd !important;
-  padding-top: 10px; /* Sesuaikan padding jika diperlukan */
-  padding-bottom: 10px;
+  background-color: #f7f4f3 !important;
+  padding: 15px 0;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 .navbar-custom .navbar-nav .nav-link {
-  color: #f8f8f8; /* Teks putih krem untuk navigasi */
+  color: #f8f8f8;
 }
-.navbar-custom .container {
-  display: flex;
-  align-items: center; /* Wajib: Meratakan konten utama (Logo & Nav) di tengah */
-}
+
 .navbar-custom .navbar-nav .nav-link:hover,
 .navbar-custom .navbar-nav .nav-link.active {
-  color: #e5d8c8; /* Cokelat muda ketika hover/aktif */
+  color: #e5d8c8;
   border-bottom: 2px solid #e5d8c8;
-  padding-bottom: 5px; /* Sesuaikan agar tidak terlalu dekat dengan bawah */
-}
-.navbar-custom .navbar-brand {
-  padding-top: 0;
-  padding-bottom: 0;
-  display: flex;
-  align-items: center;
+  padding-bottom: 5px;
 }
 .navbar-brand img {
-  height: 40px; /* Coba atur tinggi gambar logo (misalnya 40px) */
-  width: auto;
-  /* Tambahkan margin-right jika perlu jarak antara logo dan menu */
-  margin-right: 15px;
+  width: 42px;
 }
 
 .nav-link {
@@ -95,22 +75,7 @@ button,
   color: var(--brown) !important;
   font-weight: 600;
 }
-.navbar-custom .navbar-collapse {
-  /* Ini memastikan menu navigasi juga rata dengan logo */
-  align-items: center;
-}
-/* Hilangkan margin vertikal pada list navigasi */
-.navbar-custom .navbar-nav {
-  margin-bottom: 0 !important;
-}
 
-/* Hilangkan padding vertikal pada item list navigasi */
-.navbar-custom .nav-item {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-/* CARD PRODUK MIRIP ALLPRODUK */
 .product-card {
   background: #fff;
   border-radius: 14px;
@@ -159,7 +124,7 @@ button,
   gap: 0.5rem;
 }
 .card-body > .d-flex.align-items-center.gap-2 {
-  margin-top: auto; /* <-- INI YANG PALING PENTING */
+  margin-top: auto;
 }
 .btn-dark,
 .btn-primary {
@@ -170,7 +135,7 @@ button,
 
 .btn-dark:hover,
 .btn-primary:hover {
-  background-color: #a07a58; /* Cokelat yang sedikit lebih terang saat hover */
+  background-color: #a07a58;
   border-color: #a07a58;
   color: white;
 }
@@ -183,7 +148,7 @@ button,
 
 .btn-dark:hover,
 .btn-primary:hover {
-  background-color: #a07a58; /* Cokelat yang sedikit lebih terang saat hover */
+  background-color: #a07a58;
   border-color: #a07a58;
   color: white;
 }
@@ -193,9 +158,9 @@ button,
 #produk-list {
   margin-top: 0.5rem;
 }
-/* FOOTER FIX */
+
 .footer-custom {
-  background-color: #8b5e3c; /* Gunakan warna dark Bootstrap */
+  background-color: #8b5e3c;
   padding-top: 2rem;
   padding-bottom: 0;
 }
@@ -207,7 +172,7 @@ button,
 .footer-custom .form-label {
   color: rgba(255, 255, 255, 0.7);
 }
-/* Karena ikon Font Awesome tidak dimuat, ganti dengan teks atau ikon Bootstrap/dummy */
+
 .btn-floating {
   display: inline-block;
   width: 38px;
@@ -236,7 +201,6 @@ button,
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* SECTION CONTACT PREMIUM */
 .contact-section {
   background: #f6f1ea;
   border-radius: 22px;
@@ -244,7 +208,6 @@ button,
   box-shadow: 0 5px 20px rgba(90, 62, 35, 0.08);
 }
 
-/* TITLE */
 .section-title {
   font-size: 30px;
   font-weight: 700;
@@ -252,7 +215,6 @@ button,
   letter-spacing: 0.5px;
 }
 
-/* CONTACT CARD */
 .contact-card {
   background: #ffffff;
   border-radius: 16px;
@@ -266,7 +228,6 @@ button,
   box-shadow: 0 10px 24px rgba(90, 62, 35, 0.18);
 }
 
-/* INPUT PREMIUM */
 .custom-input {
   background: #fdfaf7;
   border: 1px solid #e1d4c5;
@@ -281,7 +242,6 @@ button,
   box-shadow: 0 0 0 3px rgba(180, 138, 99, 0.25);
 }
 
-/* BUTTON PREMIUM */
 .btn-primary {
   background: #7a5831 !important;
   border: none !important;
@@ -295,7 +255,6 @@ button,
   background: #5a3e23 !important;
 }
 
-/* MAP */
 #contact iframe {
   border: 0;
   border-radius: 16px;
@@ -303,18 +262,16 @@ button,
 }
 .badge.bg-warning,
 .btn-warning {
-  background-color: #e5d8c8 !important; /* Warna Krem Pucat */
-  color: #6f4e37 !important; /* Teks Cokelat Tua */
-  border: 1px solid #d4c5b3; /* Tambahkan sedikit batas agar terlihat jelas */
+  background-color: #e5d8c8 !important;
+  color: #6f4e37 !important;
+  border: 1px solid #d4c5b3;
 }
 
 .btn-warning:hover {
   background-color: #d4c5b3 !important;
   color: #6f4e37 !important;
 }
-/* --- Tambahan CSS untuk Riwayat Pembelian --- */
 
-/* Tombol Filter Baru */
 .btn-brown-outline {
   color: var(--brown);
   border: 2px solid var(--brown);
@@ -337,7 +294,6 @@ button,
   border-color: var(--brown-dark);
 }
 
-/* Card Riwayat Pembelian */
 .purchase-group-card {
   background-color: #fff;
   border-radius: 12px;
@@ -345,7 +301,7 @@ button,
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid #e5d8c8;
-  /* Untuk animasi reveal */
+
   opacity: 0;
   transform: translateY(20px);
 }
@@ -355,7 +311,6 @@ button,
   transform: translateY(0);
 }
 
-/* Efek Hover */
 .purchase-group-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);

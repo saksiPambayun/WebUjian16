@@ -357,14 +357,11 @@
     </footer>
 
     <script>
-      // Global variable untuk menyimpan semua produk
-      let allProducts = []; // Pastikan ini dimuat
+      let allProducts = [];
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
       let purchaseHistory = JSON.parse(localStorage.getItem("history")) || [];
 
-      // --- UTILITY FUNCTONS ---
       function updateCartCount() {
-        // Menghitung jumlah item unik di keranjang
         document.getElementById("cart-count").textContent = cart.length;
       }
 
@@ -395,7 +392,6 @@
         const qtyEl = document.getElementById("qty-" + id);
         const stockEl = document.getElementById("stock-" + id);
 
-        // Periksa apakah elemen qtyEl dan stockEl ada sebelum mencoba mengakses properti/metode
         if (!qtyEl || !stockEl) {
           console.error(
             "Elemen kuantitas atau stok tidak ditemukan untuk ID: " + id
@@ -418,24 +414,18 @@
           return;
         }
 
-        function savePurchaseHistory(namaProduk, jumlah) {
-          const newItem = {
-            nama: namaProduk,
-            qty: jumlah,
-            tanggal: new Date().toISOString(),
-          };
+        const history = JSON.parse(localStorage.getItem("history")) || [];
+        history.push({
+          name: product.nama,
+          quantity: qty,
+          date: new Date().toISOString(),
+        });
+        localStorage.setItem("history", JSON.stringify(history));
+        purchaseHistory = history;
 
-          // Tambahkan item baru ke riwayat
-          purchaseHistory.unshift(newItem);
-
-          // Simpan ke Local Storage
-          localStorage.setItem("history", JSON.stringify(purchaseHistory));
-        }
-        // Perbarui stok
         stock -= qty;
         stockEl.textContent = stock;
 
-        // Tambahkan item ke keranjang
         for (let i = 0; i < qty; i++) {
           cart.push({ id: id, name: product.nama, price: product.harga });
         }
@@ -443,25 +433,20 @@
         localStorage.setItem("cart", JSON.stringify(cart));
         updateCartCount();
 
-        // ⭐️ TAMBAHKAN INI UNTUK REFRESH RIWAYAT SETELAH PEMBELIAN
         loadHistory("all");
 
         alert("Produk ditambahkan ke keranjang!");
       }
       function clearHistory() {
-        // Konfirmasi dari pengguna
         if (
           confirm(
             "Apakah Anda yakin ingin menghapus semua riwayat pembelian? Tindakan ini tidak dapat dibatalkan."
           )
         ) {
-          // 1. Hapus data dari Local Storage
           localStorage.removeItem("history");
 
-          // 2. Kosongkan variabel global
           purchaseHistory = [];
 
-          // 3. Muat ulang tampilan riwayat (akan menampilkan pesan kosong)
           loadHistory("all");
 
           alert("Semua riwayat pembelian telah dihapus.");
@@ -472,7 +457,6 @@
         window.location.href = "detail.html?id=" + id;
       }
 
-      // 1. Smooth Scroll
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
           e.preventDefault();
@@ -485,7 +469,6 @@
         });
       });
 
-      // 2. Scroll Reveal / Fade-in Element
       function setupScrollReveal() {
         const revealElements = document.querySelectorAll(".reveal");
 
@@ -494,12 +477,12 @@
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
                 entry.target.classList.add("active");
-                observer.unobserve(entry.target); // Stop mengamati setelah muncul
+                observer.unobserve(entry.target);
               }
             });
           },
           {
-            threshold: 0.1, // Elemen muncul ketika 10% dari elemen terlihat
+            threshold: 0.1,
           }
         );
 
@@ -508,7 +491,6 @@
         });
       }
 
-      // 3. Lazy Loading Gambar
       function setupLazyLoading() {
         const lazyImages = document.querySelectorAll("img.img-lazy");
 
@@ -520,10 +502,8 @@
                 const src = img.getAttribute("data-src");
 
                 if (src) {
-                  // Ganti data-src ke src untuk memuat gambar
                   img.src = src;
 
-                  // Tambahkan class 'loaded' untuk efek fade-in
                   img.addEventListener("load", () => {
                     img.classList.add("loaded");
                   });
@@ -533,7 +513,7 @@
             });
           },
           {
-            rootMargin: "0px 0px 50px 0px", // Mulai memuat gambar 50px sebelum masuk viewport
+            rootMargin: "0px 0px 50px 0px",
             threshold: 0.01,
           }
         );
@@ -543,7 +523,6 @@
         });
       }
 
-      // 4. Fungsi Pencarian Footer
       function searchPagesAndProducts() {
         const query = document
           .getElementById("footerSearch")
@@ -551,7 +530,6 @@
         const resultsContainer = document.getElementById("footerSearchResults");
         resultsContainer.innerHTML = "";
 
-        // Hanya mencari jika query minimal 2 karakter
         if (query.length < 2) return;
 
         let found = false;
@@ -574,7 +552,6 @@
           resultsContainer.innerHTML += `<h6>Produk (${productMatches.length} ditemukan):</h6>${productsList}`;
         }
 
-        // Cari Halaman (Contoh sederhana)
         const pages = [
           { name: "Home", url: "index.html" },
           { name: "Shop / All Produk", url: "allProduk.html" },
@@ -601,15 +578,13 @@
         }
       }
 
-      // --- INISIASI SAAT HALAMAN DIMUAT ---
       fetch("produk.json")
         .then((res) => res.json())
         .then((data) => {
-          allProducts = data; // Simpan data global
+          allProducts = data;
           data.sort((a, b) => Number(a.id) - Number(b.id));
           const container = document.getElementById("produk-list");
 
-          // Render hanya 8 produk pertama
           container.innerHTML = data
             .slice(0, 8)
             .map(
@@ -660,12 +635,11 @@
             )
             .join("");
 
-          // Panggil fungsi setelah semua elemen dirender
           setupLazyLoading();
           setupScrollReveal();
         });
 
-      updateCartCount(); // Pastikan keranjang terupdate saat awal dimuat
+      updateCartCount();
 
       function savePurchaseHistory(productName, qty) {
         const history = JSON.parse(localStorage.getItem("history")) || [];
@@ -673,17 +647,13 @@
         const newEntry = {
           name: productName,
           quantity: qty,
-          date: new Date().toISOString(), // Gunakan ISOString untuk sorting/filtering yang lebih baik
+          date: new Date().toISOString(),
         };
 
         history.push(newEntry);
         localStorage.setItem("history", JSON.stringify(history));
 
-        // Perbarui variabel global
         purchaseHistory = history;
-
-        // Muat ulang riwayat (opsional, jika ingin riwayat otomatis ter-refresh setelah add to cart)
-        // loadHistory('all');
       }
 
       function loadHistory(filterType = "all") {
@@ -693,7 +663,6 @@
 
         let filteredHistory = purchaseHistory;
 
-        // Lakukan filter berdasarkan jenis
         if (filterType !== "all") {
           filteredHistory = purchaseHistory.filter((item) => {
             const itemDate = new Date(item.date);
@@ -716,7 +685,6 @@
           });
         }
 
-        // Urutkan berdasarkan tanggal terbaru
         filteredHistory.sort((a, b) => new Date(b.date) - new Date(a.date));
 
         historyContainer.innerHTML = "";
@@ -725,14 +693,12 @@
           historyContainer.style.display = "none";
           emptyHistory.style.display = "block";
 
-          // Cek apakah riwayat benar-benar kosong atau hanya hasil filter yang kosong
           if (purchaseHistory.length === 0) {
             emptyHistory.querySelector("h4").textContent =
               "Anda belum memiliki riwayat pembelian.";
             emptyHistory.querySelector("p").textContent =
               "Mulai berbelanja sekarang untuk melihat riwayat Anda di sini!";
           } else {
-            // Tampilkan pesan bahwa filter tidak menghasilkan apa-apa
             emptyHistory.querySelector(
               "h4"
             ).textContent = `Tidak ada riwayat untuk filter ${filterType.toUpperCase()}.`;
@@ -741,11 +707,9 @@
           }
         } else {
           emptyHistory.style.display = "none";
-          historyContainer.style.display = "flex"; // Mengasumsikan Anda ingin menampilkannya sebagai flex row/grid
+          historyContainer.style.display = "flex";
 
-          // Render riwayat
           filteredHistory.forEach((item) => {
-            // Format tanggal agar lebih mudah dibaca
             const formattedDate = new Date(item.date).toLocaleDateString(
               "id-ID",
               {
@@ -757,17 +721,21 @@
               }
             );
 
-            // Cari data produk dari allProducts
             const product = allProducts.find(
               (p) => p.nama === item.name || p.id === item.id
             );
 
-            // Jika produk ditemukan, tampilkan detail lengkap, jika tidak tampilkan minimal
             const gambar = product ? product.gambar : "image/notfound.png";
             const nama = product ? product.nama : item.name;
-            const harga = product ? product.harga : 0;
-            const stok = product ? product.stok || product.stock || 0 : 0;
+            const harga = product ? product.harga : null;
             const quantity = item.quantity || 1;
+
+            const hargaSatuan =
+              harga !== null ? `Rp ${harga.toLocaleString()}` : "-";
+            const totalHarga =
+              harga !== null
+                ? `Rp ${(quantity * harga).toLocaleString()}`
+                : "-";
 
             const card = `
               <div class="col-md-6 col-lg-4">
@@ -783,12 +751,10 @@
                     Jumlah Pesanan: <span class="fw-bold">${quantity} pcs</span>
                   </p>
                   <p class="mb-1 text-muted">
-                    Harga Satuan: <span class="fw-bold text-dark">Rp ${harga.toLocaleString()}</span>
+                    Harga Satuan: <span class="fw-bold text-dark">${hargaSatuan}</span>
                   </p>
                   <p class="mb-1 text-muted">
-                    Total Harga: <span class="fw-bold text-success">Rp ${(
-                      quantity * harga
-                    ).toLocaleString()}</span>
+                    Total Harga: <span class="fw-bold text-success">${totalHarga}</span>
                   </p>
                   <p class="mb-0 text-secondary" style="font-size: 0.9rem;">
                     Dibeli pada: ${formattedDate}
@@ -800,7 +766,6 @@
           });
         }
 
-        // Mengatur tombol aktif
         document.querySelectorAll("[data-filter]").forEach((button) => {
           button.classList.remove("active");
           if (button.getAttribute("data-filter") === filterType) {
@@ -809,7 +774,6 @@
         });
       }
 
-      // 5. Setup event listener untuk filter riwayat
       function setupHistoryFilters() {
         document
           .querySelectorAll("#history button[data-filter]")
@@ -821,15 +785,13 @@
           });
       }
 
-      // --- INISIASI SAAT HALAMAN DIMUAT ---
       fetch("produk.json")
         .then((res) => res.json())
         .then((data) => {
-          allProducts = data; // Simpan data global
+          allProducts = data;
           data.sort((a, b) => Number(a.id) - Number(b.id));
           const container = document.getElementById("produk-list");
 
-          // Render hanya 8 produk pertama
           container.innerHTML = data
             .slice(0, 8)
             .map(
@@ -882,17 +844,16 @@
             )
             .join("");
 
-          // Panggil fungsi setelah semua elemen dirender
           setupLazyLoading();
           setupScrollReveal();
-          setupHistoryFilters(); // Pasang listener filter setelah semua siap
+          setupHistoryFilters();
         });
 
-      updateCartCount(); // Pastikan keranjang terupdate saat awal dimuat
+      updateCartCount();
 
       window.onload = function () {
         updateCartCount();
-        // Ganti pemanggilan loadHistory sebelumnya dengan yang baru, default 'all'
+
         loadHistory("all");
       };
     </script>
