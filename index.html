@@ -113,7 +113,7 @@
     <section id="history" class="p-5" style="background-color: #f6f1ea">
       <div class="container reveal">
         <h2 class="fw-bold text-center mb-5 history-title">
-          Riwayat Pembelian 📜
+          Riwayat Pembelian
         </h2>
 
         <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
@@ -358,7 +358,7 @@
 
     <script>
       // Global variable untuk menyimpan semua produk
-      let allProducts = [];
+      let allProducts = []; // Pastikan ini dimuat
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
       let purchaseHistory = JSON.parse(localStorage.getItem("history")) || [];
 
@@ -418,9 +418,19 @@
           return;
         }
 
-        // ⬅️ PENYIMPANAN RIWAYAT (Perbarui variabel global dan lokal storage)
-        savePurchaseHistory(product.nama, qty);
+        function savePurchaseHistory(namaProduk, jumlah) {
+          const newItem = {
+            nama: namaProduk,
+            qty: jumlah,
+            tanggal: new Date().toISOString(),
+          };
 
+          // Tambahkan item baru ke riwayat
+          purchaseHistory.unshift(newItem);
+
+          // Simpan ke Local Storage
+          localStorage.setItem("history", JSON.stringify(purchaseHistory));
+        }
         // Perbarui stok
         stock -= qty;
         stockEl.textContent = stock;
@@ -629,7 +639,7 @@
                     <div class="d-flex align-items-center gap-2 mb-3">
                       <button class="btn btn-outline-dark btn-sm" onclick="minusQty('${
                         item.id
-                      }')">−</button>
+                      }')">-</button>
                       <span id="qty-${item.id}" class="fw-bold">1</span>
                       <button class="btn btn-outline-dark btn-sm" onclick="plusQty('${
                         item.id
@@ -747,14 +757,44 @@
               }
             );
 
+            // Cari data produk dari allProducts
+            const product = allProducts.find(
+              (p) => p.nama === item.name || p.id === item.id
+            );
+
+            // Jika produk ditemukan, tampilkan detail lengkap, jika tidak tampilkan minimal
+            const gambar = product ? product.gambar : "image/notfound.png";
+            const nama = product ? product.nama : item.name;
+            const harga = product ? product.harga : 0;
+            const stok = product ? product.stok || product.stock || 0 : 0;
+            const quantity = item.quantity || 1;
+
             const card = `
-                <div class="col-md-6 col-lg-4">
-                    <div class="card p-3 shadow-sm h-100" style="border: 1px solid #e5d8c8;">
-                        <h5 class="fw-bold text-dark">${item.name}</h5>
-                        <p class="mb-1 text-muted">Jumlah: <span class="fw-bold">${item.quantity} pcs</span></p>
-                        <p class="mb-0 text-secondary" style="font-size: 0.9rem;">Dibeli pada: ${formattedDate}</p>
-                    </div>
+              <div class="col-md-6 col-lg-4">
+                <div class="card p-3 shadow-sm h-100" style="border: 1px solid #e5d8c8;">
+                  <img 
+                    src="${gambar}" 
+                    alt="${nama}" 
+                    class="img-fluid rounded mb-3"
+                    style="height: 180px; object-fit: cover;"
+                  />
+                  <h5 class="fw-bold text-dark">${nama}</h5>
+                  <p class="mb-1 text-muted">
+                    Jumlah Pesanan: <span class="fw-bold">${quantity} pcs</span>
+                  </p>
+                  <p class="mb-1 text-muted">
+                    Harga Satuan: <span class="fw-bold text-dark">Rp ${harga.toLocaleString()}</span>
+                  </p>
+                  <p class="mb-1 text-muted">
+                    Total Harga: <span class="fw-bold text-success">Rp ${(
+                      quantity * harga
+                    ).toLocaleString()}</span>
+                  </p>
+                  <p class="mb-0 text-secondary" style="font-size: 0.9rem;">
+                    Dibeli pada: ${formattedDate}
+                  </p>
                 </div>
+              </div>
             `;
             historyContainer.innerHTML += card;
           });
