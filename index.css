@@ -9,6 +9,11 @@ body {
   padding-top: 65px;
   font-family: "Poppins", sans-serif;
 }
+a,
+button,
+.product-card {
+  transition: all 0.3s ease-in-out;
+}
 /* --- CSS untuk Scroll Reveal yang SANGAT smooth (index.css) --- */
 .reveal {
   /* Kondisi awal: Tersembunyi dan sedikit ke bawah */
@@ -48,13 +53,37 @@ body {
 /* ... */
 /* NAVBAR */
 .navbar-custom {
-  background: #fff;
-  padding: 15px 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  background-color: #fdfdfd !important;
+  padding-top: 10px; /* Sesuaikan padding jika diperlukan */
+  padding-bottom: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-
+.navbar-custom .navbar-nav .nav-link {
+  color: #f8f8f8; /* Teks putih krem untuk navigasi */
+}
+.navbar-custom .container {
+  display: flex;
+  align-items: center; /* Wajib: Meratakan konten utama (Logo & Nav) di tengah */
+}
+.navbar-custom .navbar-nav .nav-link:hover,
+.navbar-custom .navbar-nav .nav-link.active {
+  color: #e5d8c8; /* Cokelat muda ketika hover/aktif */
+  border-bottom: 2px solid #e5d8c8;
+  padding-bottom: 5px; /* Sesuaikan agar tidak terlalu dekat dengan bawah */
+}
+.navbar-custom .navbar-brand {
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  align-items: center;
+}
 .navbar-brand img {
-  width: 42px;
+  height: 40px; /* Coba atur tinggi gambar logo (misalnya 40px) */
+  width: auto;
+  /* Tambahkan margin-right jika perlu jarak antara logo dan menu */
+  margin-right: 15px;
 }
 
 .nav-link {
@@ -65,6 +94,20 @@ body {
 .nav-link.active {
   color: var(--brown) !important;
   font-weight: 600;
+}
+.navbar-custom .navbar-collapse {
+  /* Ini memastikan menu navigasi juga rata dengan logo */
+  align-items: center;
+}
+/* Hilangkan margin vertikal pada list navigasi */
+.navbar-custom .navbar-nav {
+  margin-bottom: 0 !important;
+}
+
+/* Hilangkan padding vertikal pada item list navigasi */
+.navbar-custom .nav-item {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 /* CARD PRODUK MIRIP ALLPRODUK */
@@ -118,13 +161,31 @@ body {
 .card-body > .d-flex.align-items-center.gap-2 {
   margin-top: auto; /* <-- INI YANG PALING PENTING */
 }
-.btn-warning {
-  border-radius: 8px;
-  font-weight: 600;
+.btn-dark,
+.btn-primary {
+  background-color: #6f4e37;
+  border-color: #6f4e37;
+  color: white;
 }
-.btn-dark {
-  border-radius: 8px;
-  font-weight: 600;
+
+.btn-dark:hover,
+.btn-primary:hover {
+  background-color: #a07a58; /* Cokelat yang sedikit lebih terang saat hover */
+  border-color: #a07a58;
+  color: white;
+}
+.btn-dark,
+.btn-primary {
+  background-color: #6f4e37;
+  border-color: #6f4e37;
+  color: white;
+}
+
+.btn-dark:hover,
+.btn-primary:hover {
+  background-color: #a07a58; /* Cokelat yang sedikit lebih terang saat hover */
+  border-color: #a07a58;
+  color: white;
 }
 .d-flex.gap-2 {
   gap: 0.5rem !important;
@@ -239,4 +300,99 @@ body {
   border: 0;
   border-radius: 16px;
   box-shadow: 0 5px 20px rgba(90, 62, 35, 0.12);
+}
+.badge.bg-warning,
+.btn-warning {
+  background-color: #e5d8c8 !important; /* Warna Krem Pucat */
+  color: #6f4e37 !important; /* Teks Cokelat Tua */
+  border: 1px solid #d4c5b3; /* Tambahkan sedikit batas agar terlihat jelas */
+}
+
+.btn-warning:hover {
+  background-color: #d4c5b3 !important;
+  color: #6f4e37 !important;
+}
+/* --- Tambahan CSS untuk Riwayat Pembelian --- */
+
+/* Tombol Filter Baru */
+.btn-brown-outline {
+  color: var(--brown);
+  border: 2px solid var(--brown);
+  background-color: transparent;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.btn-brown-outline:hover {
+  background-color: var(--brown);
+  color: white;
+  border-color: var(--brown-dark);
+}
+
+.btn-brown-outline.active {
+  background-color: var(--brown-dark);
+  color: white;
+  border-color: var(--brown-dark);
+}
+
+/* Card Riwayat Pembelian */
+.purchase-group-card {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #e5d8c8;
+  /* Untuk animasi reveal */
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.purchase-group-card.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Efek Hover */
+.purchase-group-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.purchase-header {
+  background-color: var(--brown);
+  color: white;
+  padding: 12px 20px;
+  border-bottom: 2px solid var(--brown-dark);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.purchase-item {
+  padding: 15px 20px;
+  border-bottom: 1px dashed #e1d4c5;
+}
+
+.purchase-item:last-child {
+  border-bottom: none;
+}
+
+.product-thumb {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.history-total-price {
+  background-color: #f7f3ed;
+  padding: 12px 20px;
+  font-weight: bold;
+}
+
+.history-title {
+  color: var(--brown-dark);
 }

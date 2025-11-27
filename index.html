@@ -9,6 +9,10 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
@@ -40,6 +44,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#history">Riwayat</a>    
             </li>
             <li class="nav-item">
               <a class="nav-link position-relative" href="cart.html">
@@ -103,9 +110,65 @@
       <div class="row g-4" id="produk-list"></div>
     </section>
 
-    <section class="history" id="history">
-      <h2 class="fw-bold">Riwayat Pembelian</h2>
-      <ul id="historyList"></ul>
+    <section id="history" class="p-5" style="background-color: #f6f1ea">
+      <div class="container reveal">
+        <h2 class="fw-bold text-center mb-5 history-title">
+          Riwayat Pembelian 📜
+        </h2>
+
+        <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+          <button class="btn btn-brown-outline active" data-filter="all">
+            Semua
+          </button>
+
+          <button class="btn btn-brown-outline" data-filter="week">
+            Minggu Ini
+          </button>
+
+          <button class="btn btn-brown-outline" data-filter="month">
+            Bulan Ini
+          </button>
+
+          <button class="btn btn-brown-outline" data-filter="year">
+            Tahun Ini
+          </button>
+        </div>
+
+        <div
+          id="empty-history"
+          class="text-center p-5 rounded-4 shadow-sm"
+          style="
+            background-color: #fff;
+            border: 1px solid #e5d8c8;
+            display: none;
+          "
+        >
+          <h4 class="mb-3 text-muted">
+            Anda belum memiliki riwayat pembelian.
+          </h4>
+
+          <p class="mb-4">
+            Mulai berbelanja sekarang untuk melihat riwayat Anda di sini!
+          </p>
+
+          <a href="#products" class="btn btn-primary px-4">Lihat Produk Kami</a>
+        </div>
+
+        <div id="history-container" class="row g-4"></div>
+      </div>
+    </section>
+    <section id="history" class="p-5" style="background-color: #f6f1ea">
+      <div class="container reveal">
+        <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+          <button class="btn btn-brown-outline active" data-filter="all">
+            Semua
+          </button>
+
+          <button class="btn btn-danger" onclick="clearHistory()">
+            ❌ Hapus Semua Riwayat
+          </button>
+        </div>
+      </div>
     </section>
 
     <section id="about" class="py-5">
@@ -297,6 +360,7 @@
       // Global variable untuk menyimpan semua produk
       let allProducts = [];
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let purchaseHistory = JSON.parse(localStorage.getItem("history")) || [];
 
       // --- UTILITY FUNCTONS ---
       function updateCartCount() {
@@ -328,8 +392,18 @@
       }
 
       function addToCart(id) {
-        const qty = parseInt(document.getElementById("qty-" + id).textContent);
+        const qtyEl = document.getElementById("qty-" + id);
         const stockEl = document.getElementById("stock-" + id);
+
+        // Periksa apakah elemen qtyEl dan stockEl ada sebelum mencoba mengakses properti/metode
+        if (!qtyEl || !stockEl) {
+          console.error(
+            "Elemen kuantitas atau stok tidak ditemukan untuk ID: " + id
+          );
+          alert("Terjadi kesalahan saat menambahkan produk ke keranjang.");
+          return;
+        }
+        const qty = parseInt(qtyEl.textContent);
         let stock = parseInt(stockEl.textContent);
 
         if (qty > stock) {
@@ -337,17 +411,51 @@
           return;
         }
 
+        const product = allProducts.find((p) => p.id === id);
+        if (!product) {
+          console.error("Produk tidak ditemukan untuk ID: " + id);
+          alert("Produk tidak valid.");
+          return;
+        }
+
+        // ⬅️ PENYIMPANAN RIWAYAT (Perbarui variabel global dan lokal storage)
+        savePurchaseHistory(product.nama, qty);
+
+        // Perbarui stok
         stock -= qty;
         stockEl.textContent = stock;
 
+        // Tambahkan item ke keranjang
         for (let i = 0; i < qty; i++) {
-          cart.push({ id: id });
+          cart.push({ id: id, name: product.nama, price: product.harga });
         }
 
         localStorage.setItem("cart", JSON.stringify(cart));
         updateCartCount();
 
+        // ⭐️ TAMBAHKAN INI UNTUK REFRESH RIWAYAT SETELAH PEMBELIAN
+        loadHistory("all");
+
         alert("Produk ditambahkan ke keranjang!");
+      }
+      function clearHistory() {
+        // Konfirmasi dari pengguna
+        if (
+          confirm(
+            "Apakah Anda yakin ingin menghapus semua riwayat pembelian? Tindakan ini tidak dapat dibatalkan."
+          )
+        ) {
+          // 1. Hapus data dari Local Storage
+          localStorage.removeItem("history");
+
+          // 2. Kosongkan variabel global
+          purchaseHistory = [];
+
+          // 3. Muat ulang tampilan riwayat (akan menampilkan pesan kosong)
+          loadHistory("all");
+
+          alert("Semua riwayat pembelian telah dihapus.");
+        }
       }
 
       function showDetail(id) {
@@ -438,7 +546,6 @@
 
         let found = false;
 
-        // Cari Produk
         const productMatches = allProducts.filter(
           (p) =>
             p.nama.toLowerCase().includes(query) ||
@@ -549,6 +656,205 @@
         });
 
       updateCartCount(); // Pastikan keranjang terupdate saat awal dimuat
+
+      function savePurchaseHistory(productName, qty) {
+        const history = JSON.parse(localStorage.getItem("history")) || [];
+
+        const newEntry = {
+          name: productName,
+          quantity: qty,
+          date: new Date().toISOString(), // Gunakan ISOString untuk sorting/filtering yang lebih baik
+        };
+
+        history.push(newEntry);
+        localStorage.setItem("history", JSON.stringify(history));
+
+        // Perbarui variabel global
+        purchaseHistory = history;
+
+        // Muat ulang riwayat (opsional, jika ingin riwayat otomatis ter-refresh setelah add to cart)
+        // loadHistory('all');
+      }
+
+      function loadHistory(filterType = "all") {
+        const historyContainer = document.getElementById("history-container");
+        const emptyHistory = document.getElementById("empty-history");
+        const today = new Date();
+
+        let filteredHistory = purchaseHistory;
+
+        // Lakukan filter berdasarkan jenis
+        if (filterType !== "all") {
+          filteredHistory = purchaseHistory.filter((item) => {
+            const itemDate = new Date(item.date);
+
+            if (filterType === "week") {
+              const oneWeekAgo = new Date(
+                today.getTime() - 7 * 24 * 60 * 60 * 1000
+              );
+              return itemDate >= oneWeekAgo;
+            } else if (filterType === "month") {
+              const oneMonthAgo = new Date();
+              oneMonthAgo.setMonth(today.getMonth() - 1);
+              return itemDate >= oneMonthAgo;
+            } else if (filterType === "year") {
+              const oneYearAgo = new Date();
+              oneYearAgo.setFullYear(today.getFullYear() - 1);
+              return itemDate >= oneYearAgo;
+            }
+            return false;
+          });
+        }
+
+        // Urutkan berdasarkan tanggal terbaru
+        filteredHistory.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        historyContainer.innerHTML = "";
+
+        if (filteredHistory.length === 0) {
+          historyContainer.style.display = "none";
+          emptyHistory.style.display = "block";
+
+          // Cek apakah riwayat benar-benar kosong atau hanya hasil filter yang kosong
+          if (purchaseHistory.length === 0) {
+            emptyHistory.querySelector("h4").textContent =
+              "Anda belum memiliki riwayat pembelian.";
+            emptyHistory.querySelector("p").textContent =
+              "Mulai berbelanja sekarang untuk melihat riwayat Anda di sini!";
+          } else {
+            // Tampilkan pesan bahwa filter tidak menghasilkan apa-apa
+            emptyHistory.querySelector(
+              "h4"
+            ).textContent = `Tidak ada riwayat untuk filter ${filterType.toUpperCase()}.`;
+            emptyHistory.querySelector("p").textContent =
+              "Coba pilih filter lain atau lihat semua riwayat.";
+          }
+        } else {
+          emptyHistory.style.display = "none";
+          historyContainer.style.display = "flex"; // Mengasumsikan Anda ingin menampilkannya sebagai flex row/grid
+
+          // Render riwayat
+          filteredHistory.forEach((item) => {
+            // Format tanggal agar lebih mudah dibaca
+            const formattedDate = new Date(item.date).toLocaleDateString(
+              "id-ID",
+              {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+              }
+            );
+
+            const card = `
+                <div class="col-md-6 col-lg-4">
+                    <div class="card p-3 shadow-sm h-100" style="border: 1px solid #e5d8c8;">
+                        <h5 class="fw-bold text-dark">${item.name}</h5>
+                        <p class="mb-1 text-muted">Jumlah: <span class="fw-bold">${item.quantity} pcs</span></p>
+                        <p class="mb-0 text-secondary" style="font-size: 0.9rem;">Dibeli pada: ${formattedDate}</p>
+                    </div>
+                </div>
+            `;
+            historyContainer.innerHTML += card;
+          });
+        }
+
+        // Mengatur tombol aktif
+        document.querySelectorAll("[data-filter]").forEach((button) => {
+          button.classList.remove("active");
+          if (button.getAttribute("data-filter") === filterType) {
+            button.classList.add("active");
+          }
+        });
+      }
+
+      // 5. Setup event listener untuk filter riwayat
+      function setupHistoryFilters() {
+        document
+          .querySelectorAll("#history button[data-filter]")
+          .forEach((button) => {
+            button.addEventListener("click", function () {
+              const filterType = this.getAttribute("data-filter");
+              loadHistory(filterType);
+            });
+          });
+      }
+
+      // --- INISIASI SAAT HALAMAN DIMUAT ---
+      fetch("produk.json")
+        .then((res) => res.json())
+        .then((data) => {
+          allProducts = data; // Simpan data global
+          data.sort((a, b) => Number(a.id) - Number(b.id));
+          const container = document.getElementById("produk-list");
+
+          // Render hanya 8 produk pertama
+          container.innerHTML = data
+            .slice(0, 8)
+            .map(
+              (item) => `
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product-card reveal">
+                        <div class="img-container">
+                            <span class="category-label">${
+                              (item.tags && item.tags[0]) || "fashion"
+                            }</span>
+                            <img 
+                                class="img-lazy" 
+                                data-src="${item.gambar}" 
+                                alt="${item.nama}" /> 
+                        </div>
+                        <div class="card-body">
+                            <h5 class="fw-bold mb-1">${item.nama}</h5>
+                            <p class="text-muted mb-1">${item.deskripsi}</p>
+                            <p class="fw-bold fs-6 mb-2 text-dark">Rp ${item.harga.toLocaleString(
+                              "id-ID"
+                            )}</p>
+                            <p class="text-success fw-bold mb-2">
+                                Stok: <span id="stock-${item.id}">${
+                item.stok || 10
+              }</span>
+                            </p>
+                            <div class="d-flex align-items-center gap-2 mb-3">
+                                <button class="btn btn-outline-dark btn-sm" onclick="minusQty('${
+                                  item.id
+                                }')">−</button>
+                                <span id="qty-${
+                                  item.id
+                                }" class="fw-bold">1</span>
+                                <button class="btn btn-outline-dark btn-sm" onclick="plusQty('${
+                                  item.id
+                                }')">+</button>
+                            </div>
+                            <div class="d-flex gap-2 mb-2">
+                                <button class="btn btn-warning w-100" onclick="addToCart('${
+                                  item.id
+                                }')">Tambah ke Keranjang</button>
+                                <button class="btn btn-dark w-100" onclick="showDetail('${
+                                  item.id
+                                }')">Detail</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `
+            )
+            .join("");
+
+          // Panggil fungsi setelah semua elemen dirender
+          setupLazyLoading();
+          setupScrollReveal();
+          setupHistoryFilters(); // Pasang listener filter setelah semua siap
+        });
+
+      updateCartCount(); // Pastikan keranjang terupdate saat awal dimuat
+
+      window.onload = function () {
+        updateCartCount();
+        // Ganti pemanggilan loadHistory sebelumnya dengan yang baru, default 'all'
+        loadHistory("all");
+      };
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
